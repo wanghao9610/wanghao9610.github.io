@@ -39,7 +39,7 @@
     }
   </script>
 
-  <!-- Copy Wechat Script -->
+  <!-- Copy WeChat Script -->
   <script>
     function copyWechat(event) {
       event.preventDefault();
@@ -48,7 +48,7 @@
       // Try to use modern API
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(wechat).then(function () {
-          alert('Wechat ID copied to clipboard: ' + wechat);
+          alert('WeChat ID copied to clipboard: ' + wechat);
         }).catch(function () {
           // If failed, try to open wechat client
           window.location.href = 'wechat:' + wechat;
@@ -101,7 +101,7 @@
                     <a href="mailto:wanghao9610@gmail.com" onclick="copyEmail(event)" style="cursor:pointer"><i
                         class="fas fa-envelope"></i> E-mail</a> &nbsp;/&nbsp;
                     <a href="wechat://wangh9610" onclick="copyWechat(event)" style="cursor:pointer"><i
-                        class="fab fa-weixin"></i> Wechat</a> &nbsp;/&nbsp;
+                        class="fab fa-weixin"></i> WeChat</a> &nbsp;/&nbsp;
                     <a href="https://scholar.google.com/citations?user=PZajgHYAAAAJ&h"><i
                         class="ai ai-google-scholar"></i> Scholar</a> &nbsp;/&nbsp;
                     <a href="https://github.com/wanghao9610/"><i class="fab fa-github"></i> Github</a>
