@@ -18,7 +18,7 @@
   <!-- Busuanzi Counter Script -->
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-  <!-- Copy Email Script -->
+  <!-- Copy E-mail Script -->
   <script>
     function copyEmail(event) {
       event.preventDefault();
@@ -27,7 +27,7 @@
       // Try to use modern API
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(email).then(function () {
-          alert('Email address copied to clipboard: ' + email);
+          alert('E-mail address copied to clipboard: ' + email);
         }).catch(function () {
           // If failed, try to open email client
           window.location.href = 'mailto:' + email;
@@ -92,13 +92,14 @@
                   </ul>
                   <strong>Open Source promotes the development of technology.</strong>
                   <br><br>
-                  I anticipate graduating in 2026 for industrial research positions. If you're interested, please feel
-                  free to reach out to me via email or WeChat.
+                  <!-- I anticipate graduating in 2026 for industrial research positions. If you're interested, please feel
+                  free to reach out to me via E-mail or WeChat. -->
+                  I'm currently looking for collaborations, feel free to contact me via E-mail or WeChat.
                   </p>
                   <p style="text-align:center">
                     <a href="https://wanghao9610.github.io/"><i class="fas fa-home"></i> Home</a> &nbsp;/&nbsp;
                     <a href="mailto:wanghao9610@gmail.com" onclick="copyEmail(event)" style="cursor:pointer"><i
-                        class="fas fa-envelope"></i> Email</a> &nbsp;/&nbsp;
+                        class="fas fa-envelope"></i> E-mail</a> &nbsp;/&nbsp;
                     <a href="wechat://wangh9610" onclick="copyWechat(event)" style="cursor:pointer"><i
                         class="fab fa-weixin"></i> Wechat</a> &nbsp;/&nbsp;
                     <a href="https://scholar.google.com/citations?user=PZajgHYAAAAJ&h"><i
