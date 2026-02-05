@@ -473,8 +473,54 @@
           </table>
           
           <!-- MapMyVisitors -->
-          <script type="text/javascript" id="mapmyvisitors"
-            src="//mapmyvisitors.com/map.js?d=nq_TN8mwe6ePYMGkPX8UT8YNMkNICnUTSaVc7okfb5k&cl=ffffff&w=500&co=000000&ct=808080&t=n"></script>
+          <div id="mapmyvisitors-container"></div>
+          <script type="text/javascript">
+            (function () {
+              const CACHE_KEY = 'mapmyvisitors_last_load';
+              const CACHE_DURATION = 86400000; // 24 hours in milliseconds
+              const container = document.getElementById('mapmyvisitors-container');
+
+              function loadMapScript() {
+                const lastLoad = localStorage.getItem(CACHE_KEY);
+                const now = Date.now();
+
+                // Check if we loaded within the cache duration
+                if (lastLoad && (now - parseInt(lastLoad)) < CACHE_DURATION) {
+                  console.log('MapMyVisitors: Using cached version, skipping reload');
+                  return;
+                }
+
+                // Load the script
+                const script = document.createElement('script');
+                script.type = 'text/javascript';
+                script.id = 'mapmyvisitors';
+                script.src = '//mapmyvisitors.com/map.js?d=nq_TN8mwe6ePYMGkPX8UT8YNMkNICnUTSaVc7okfb5k&cl=ffffff&w=500&co=000000&ct=808080&t=n';
+                container.appendChild(script);
+
+                // Update cache timestamp
+                localStorage.setItem(CACHE_KEY, now.toString());
+              }
+
+              // Use Intersection Observer for lazy loading
+              if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                  entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                      loadMapScript();
+                      observer.disconnect(); // Stop observing after loading
+                    }
+                  });
+                }, {
+                  rootMargin: '100px' // Load when within 100px of viewport
+                });
+
+                observer.observe(container);
+              } else {
+                // Fallback for browsers without Intersection Observer
+                loadMapScript();
+              }
+            })();
+          </script>
 
           <!-- Footer -->
           <table
