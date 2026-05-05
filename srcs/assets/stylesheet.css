@@ -541,7 +541,7 @@ a:hover .papertitle {
 .news-item,
 .info-item {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 12px;
   padding: 11px 13px;
   border: 1px solid rgba(226, 232, 240, .72);
@@ -605,8 +605,15 @@ a:hover .papertitle {
   background: #dbeafe;
 }
 
+.info-item > span:last-child {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
 .soft-badge {
-  margin: 0 5px 5px 0;
+  margin: 0;
   color: #475569;
   border: 1px solid #e2e8f0;
   background: #f8fafc;
@@ -742,10 +749,9 @@ a:hover .papertitle {
 
 /* Footer */
 #mapmyvisitors-container {
-  margin: 22px 16px 12px;
   padding: 14px;
   border: 1px solid rgba(226, 232, 240, .7);
-  border-radius: 18px;
+  border-radius: 14px;
   background: rgba(248, 250, 252, .5);
   text-align: center;
   opacity: .48;
@@ -814,6 +820,7 @@ a:hover .papertitle {
   position: relative;
   display: grid;
   grid-template-columns: max-content 1fr;
+  align-items: center;
   gap: 12px;
   margin-bottom: 10px;
   padding: 12px 14px;
@@ -1048,7 +1055,7 @@ a:hover .papertitle {
   }
 
   .page-nav,
-  #mapmyvisitors-container,
+  .visitors-section,
   .site-counter,
   .contact-links {
     display: none !important;
