@@ -127,9 +127,14 @@
                 <td style="padding:16px;width:100%;vertical-align:middle">
                   <h2>✨ News</h2>
                   <ul>
+                    <li>[<strong>2026.04</strong>] Excited to share that our latest project <a
+                      href="https://wanghao9610.github.io/X2SAM/">X2SAM</a> is launched!</li>
+                  </ul>
+                  <ul>
                     <li>[<strong>2025.11</strong>] Happy to announce that our paper <a
                         href="https://wanghao9610.github.io/X-SAM/">X-SAM</a> is accepted by AAAI 2026.</li>
                   </ul>
+       
                 </td>
               </tr>
             </tbody>
@@ -151,6 +156,60 @@
           </table>
           <table
             style="width:100%;border:0px;border-spacing:0px 10px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+            <!-- X2SAM -->
+            <tbody>
+              <tr onmouseout="x2sam_stop()" onmouseover="x2sam_start()">
+                <td style="padding:16px;width:20%;vertical-align:middle">
+                  <div class="one">
+                    <div class="two" id='x2sam_image'>
+                      <img src='srcs/papers/x2sam_after.gif' width=100%>
+                    </div>
+                    <img src='srcs/papers/x2sam_before.png' width=100%>
+                  </div>
+                  <script type="text/javascript">
+                    function x2sam_start() {
+                      document.getElementById('x2sam_image').style.opacity = "1";
+                    }
+
+                    function x2sam_stop() {
+                      document.getElementById('x2sam_image').style.opacity = "0";
+                    }
+                    x2sam_stop()
+                  </script>
+                </td>
+                <td style="padding:8px;width:80%;vertical-align:middle">
+                  <a href="https://wanghao9610.github.io/X2SAM/">
+                    <span class="papertitle">X2SAM: Any Segmentation in Images and Videos</span>
+                  </a>
+                  <br>
+                  <strong>Hao Wang</strong>,
+                  <a href="https://scholar.google.com/citations?user=3PFZAg0AAAAJ&hl">Limeng Qiao</a>,
+                  <a href="https://scholar.google.com/citations?user=I0aKo_4AAAAJ&hl">Chi Zhang</a>,
+                  <a href="https://scholar.google.com/citations?user=NRG_hpYAAAAJ&hl">Guanglu Wan</a>,
+                  <a href="https://forestlinma.com/">Lin Ma</a>,
+                  <a href="https://scholar.google.com/citations?user=c3iwWRcAAAAJ&hl">Xiangyuan Lan</a>,
+                  <a href="https://scholar.google.com/citations?user=voxznZAAAAAJ&hl">Xiaodan Liang</a>,
+                  <br>
+                  <em>arXiv Preprint</em>, 2026
+                  <br>
+                  <a href="https://wanghao9610.github.io/X2SAM/">Project</a>
+                  /
+                  <a href="https://arxiv.org/abs/2605.00891">Paper</a>
+                  /
+                  <a href="https://github.com/wanghao9610/X2SAM">
+                    <img
+                      src="https://img.shields.io/github/stars/wanghao9610/X2SAM?style=flat-square&logo=github&logoColor=white&label=Code&color=black&cacheSeconds=86400"
+                      alt="GitHub stars">
+                  </a>
+                  <p>
+                    A unified segmentation MLLM that extends any-segmentation from images to videos, supporting
+                    conversational instructions and visual prompts through Mask Memory for temporally consistent
+                    pixel-level perception.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+
             <!-- X-SAM -->
             <tbody>
               <tr onmouseout="xsam_stop()" onmouseover="xsam_start()">
