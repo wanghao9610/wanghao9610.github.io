@@ -98,8 +98,6 @@ function initializeSectionNavigation() {
 }
 
 function initializeMapMyVisitors() {
-  const cacheKey = 'mapmyvisitors_last_load';
-  const cacheDuration = 86400000;
   const container = document.getElementById('mapmyvisitors-container');
 
   if (!container) {
@@ -107,19 +105,15 @@ function initializeMapMyVisitors() {
   }
 
   function loadMapScript() {
-    const lastLoad = localStorage.getItem(cacheKey);
-    const now = Date.now();
-
-    if (lastLoad && (now - parseInt(lastLoad, 10)) < cacheDuration) {
+    if (document.getElementById('mapmyvisitors')) {
       return;
     }
 
     const script = document.createElement('script');
     script.type = 'text/javascript';
     script.id = 'mapmyvisitors';
-    script.src = '//mapmyvisitors.com/map.js?d=nq_TN8mwe6ePYMGkPX8UT8YNMkNICnUTSaVc7okfb5k&cl=ffffff&w=500&co=000000&ct=808080&t=n';
+    script.src = 'https://mapmyvisitors.com/map.js?d=nq_TN8mwe6ePYMGkPX8UT8YNMkNICnUTSaVc7okfb5k&cl=ffffff&w=500&co=000000&ct=808080&t=n';
     container.appendChild(script);
-    localStorage.setItem(cacheKey, now.toString());
   }
 
   if ('IntersectionObserver' in window) {
