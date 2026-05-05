@@ -140,9 +140,35 @@ function initializeMapMyVisitors() {
   }
 }
 
+function initializePaperPreviewHover() {
+  document.querySelectorAll('.paper-row').forEach((row) => {
+    const previewImage = row.querySelector('.two img');
+
+    if (previewImage) {
+      previewImage.loading = 'eager';
+
+      const preloadImage = new Image();
+      preloadImage.src = previewImage.currentSrc || previewImage.src;
+    }
+
+    const activate = () => row.classList.add('is-preview-active');
+    const deactivate = () => row.classList.remove('is-preview-active');
+
+    row.addEventListener('mouseenter', activate);
+    row.addEventListener('mouseleave', deactivate);
+    row.addEventListener('focusin', activate);
+    row.addEventListener('focusout', (event) => {
+      if (!row.contains(event.relatedTarget)) {
+        deactivate();
+      }
+    });
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   updateLastModifiedDate();
   prepareExternalLinks();
   initializeSectionNavigation();
+  initializePaperPreviewHover();
   initializeMapMyVisitors();
 });

@@ -652,7 +652,9 @@ a:hover .papertitle {
 }
 
 .paper-row:hover .two,
-.paper-row:focus-within .two {
+.paper-row:focus-within .two,
+.paper-row.is-preview-active .two,
+.one:hover .two {
   opacity: 1;
 }
 
