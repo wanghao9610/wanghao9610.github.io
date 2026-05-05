@@ -104,6 +104,7 @@ h2 {
   font-size: 21px;
   color: #111827;
   letter-spacing: .01em;
+  text-transform: uppercase;
 }
 
 .papertitle {
@@ -125,12 +126,18 @@ h2 {
 }
 
 .one {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 160px;
   height: 160px;
   position: relative;
 }
 
 .two {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 160px;
   height: 160px;
   position: absolute;
