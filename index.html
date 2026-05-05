@@ -8,11 +8,28 @@
 
   <meta name="author" content="Hao Wang (王豪)">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description"
+    content="Hao Wang is a Ph.D. candidate working on computer vision, multimodal large language models, and agentic AI.">
+  <meta name="keywords" content="Hao Wang, Wang Hao, computer vision, multimodal AI, MLLM, segmentation, X2SAM, X-SAM">
+  <link rel="canonical" href="https://wanghao9610.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Hao Wang (王豪)">
+  <meta property="og:description"
+    content="Ph.D. candidate working on computer vision, multimodal large language models, and agentic AI.">
+  <meta property="og:url" content="https://wanghao9610.github.io/">
+  <meta property="og:image" content="https://wanghao9610.github.io/srcs/personal/haowang.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Hao Wang (王豪)">
+  <meta name="twitter:description"
+    content="Ph.D. candidate working on computer vision, multimodal large language models, and agentic AI.">
+  <meta name="twitter:image" content="https://wanghao9610.github.io/srcs/personal/haowang.jpg">
+  <link rel="preload" as="image" href="srcs/personal/haowang.jpg">
   <link rel="icon" href="srcs/favicon/favicon.ico" sizes="any">
   <link rel="icon" href="srcs/favicon/favico-16.png" type="image/png" sizes="16x16">
   <link rel="icon" href="srcs/favicon/favicon-32.png" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="srcs/favicon/apple-touch-icon.png">
   <link rel="stylesheet" type="text/css" href="srcs/assets/stylesheet.css">
+  <script defer src="srcs/assets/main.js"></script>
 
   <!-- Font Awesome and Academicons for professional icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -21,45 +38,36 @@
   <!-- Busuanzi Counter Script -->
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-  <!-- Copy E-mail Script -->
-  <script>
-    function copyEmail(event) {
-      event.preventDefault();
-      const email = 'wanghao9610@gmail.com';
-
-      // Try to use modern API
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(email).then(function () {
-          alert('E-mail address copied to clipboard: ' + email);
-        }).catch(function () {
-          // If failed, try to open email client
-          window.location.href = 'mailto:' + email;
-        });
-      } else {
-        // Fallback: directly open email client
-        window.location.href = 'mailto:' + email;
-      }
-    }
-  </script>
-
-  <!-- Copy WeChat Script -->
-  <script>
-    function copyWechat(event) {
-      event.preventDefault();
-      const wechat = 'wangh9610';
-
-      // Try to use modern API
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(wechat).then(function () {
-          alert('WeChat ID copied to clipboard: ' + wechat);
-        }).catch(function () {
-          // If failed, try to open wechat client
-          window.location.href = 'wechat:' + wechat;
-        });
-      } else {
-        // Fallback: directly open wechat client
-        window.location.href = 'wechat:' + wechat;
-      }
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Hao Wang",
+      "alternateName": "王豪",
+      "url": "https://wanghao9610.github.io/",
+      "image": "https://wanghao9610.github.io/srcs/personal/haowang.jpg",
+      "email": "mailto:wanghao9610@gmail.com",
+      "affiliation": [
+        {
+          "@type": "Organization",
+          "name": "Sun Yat-sen University"
+        },
+        {
+          "@type": "Organization",
+          "name": "Pengcheng Laboratory"
+        }
+      ],
+      "sameAs": [
+        "https://github.com/wanghao9610/",
+        "https://scholar.google.com/citations?user=PZajgHYAAAAJ&h"
+      ],
+      "knowsAbout": [
+        "Computer Vision",
+        "Multimodal AI",
+        "Multimodal Large Language Models",
+        "Agentic AI",
+        "Image and Video Segmentation"
+      ]
     }
   </script>
 
@@ -73,7 +81,7 @@
         <td style="padding:0px">
           <div class="hero">
             <div class="hero-copy">
-              <p class="eyebrow">Computer Vision · Multimodal AI  · Agentic AI</p>
+              <p class="eyebrow">Computer Vision · Multimodal AI · Agentic AI</p>
               <p class="name">
                 Hao Wang (王豪)
               </p>
@@ -95,15 +103,18 @@
                 <span>Multi-modal large language models</span>
                 <span>Multi-modal agentic models</span>
               </div>
-              <p>
+              <p class="career-callout">
                 <strong>Open source promotes the development of technology.</strong>
                 <br>
-                <em style="font-style: italic;">I expect to graduate in December 2026 and am proactively exploring industrial research opportunities. I also welcome collaborations on innovative projects. If you are interested in working together or have relevant positions, please feel free to reach out to me via E-mail or WeChat.</em>
+                <em>I expect to graduate in December 2026 and am proactively exploring
+                  industrial research opportunities. I also welcome collaborations on innovative projects. If you are
+                  interested in working together or have relevant positions, please feel free to reach out to me via
+                  E-mail or WeChat.</em>
               </p>
               <p class="contact-links">
-                <a href=""><i class="fas fa-file-lines"></i> CV</a>
-                <a href="mailto:wanghao9610@gmail.com" onclick="copyEmail(event)" style="cursor:pointer"><i
-                    class="fas fa-envelope"></i> E-mail</a>
+                <a class="secondary-link" href="srcs/personal/cv.pdf"><i class="fas fa-file-lines"></i> CV</a>
+                <a class="primary-link" href="mailto:wanghao9610@gmail.com" onclick="copyEmail(event)"
+                  style="cursor:pointer"><i class="fas fa-envelope"></i> E-mail</a>
                 <a href="wechat://wangh9610" onclick="copyWechat(event)" style="cursor:pointer"><i
                     class="fab fa-weixin"></i> WeChat</a>
                 <a href="https://scholar.google.com/citations?user=PZajgHYAAAAJ&h"><i class="ai ai-google-scholar"></i>
@@ -114,18 +125,27 @@
             <div class="hero-photo">
               <a href="srcs/papers/haowang.jpg"><img
                   style="width:100%;max-width:100%;object-fit: cover; border-radius: 50%;" alt="profile photo"
-                  src="srcs/personal/haowang.jpg" class="profile-photo hoverZoomLink"></a>
+                  src="srcs/personal/haowang.jpg" class="profile-photo hoverZoomLink" decoding="async"></a>
             </div>
           </div>
 
+          <nav class="page-nav" aria-label="Page sections">
+            <a href="#news">News</a>
+            <a href="#publications">Publications</a>
+            <a href="#experience">Experience</a>
+            <a href="#education">Education</a>
+            <a href="#services">Services</a>
+            <a href="#awards">Awards</a>
+          </nav>
+
           <!-- News -->
-          <section class="section-card">
+          <section class="section-card" id="news">
             <h2><span class="section-icon"><i class="fas fa-bolt"></i></span>News</h2>
             <div class="news-list">
-              <div class="news-item">
+              <div class="news-item news-item-latest">
                 <span class="date-badge">2026.04</span>
-                <span>Excited to share that our latest project <a href="https://wanghao9610.github.io/X2SAM/">X2SAM</a>
-                  is launched!</span>
+                <span><span class="latest-badge">Latest</span>Excited to share that our latest project <a
+                    href="https://wanghao9610.github.io/X2SAM/">X2SAM</a> is launched!</span>
               </div>
               <div class="news-item">
                 <span class="date-badge">2025.11</span>
@@ -136,362 +156,332 @@
           </section>
 
           <!-- Publications -->
-          <table class="section-heading"
-            style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-            <tbody>
-              <tr>
-                <td style="padding:16px 16px 6px 16px;width:100%;vertical-align:middle">
-                  <h2><span class="section-icon"><i class="fas fa-scroll"></i></span>Publications</h2>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <!-- First-author Publications -->
-          <table class="publication-table"
-            style="width:100%;border:0px;border-spacing:0px 10px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-            <tbody>
-              <tr>
-                <td style="padding:6px 16px 0px 16px;width:100%;vertical-align:middle" colspan="2">
-                  <h2 class="subsection-title"><strong>First-author Publications</strong></h2>
-                </td>
-              </tr>
-            </tbody>
-            <!-- X2SAM -->
-            <tbody>
-              <tr class="paper-row" onmouseout="x2sam_stop()" onmouseover="x2sam_start()">
-                <td style="padding:16px;width:20%;vertical-align:middle">
-                  <div class="one">
-                    <div class="two" id='x2sam_image'>
-                      <img src='srcs/papers/x2sam_after.gif' width=100%>
+          <section class="section-card publication-section" id="publications">
+            <div class="section-title-row">
+              <h2><span class="section-icon"><i class="fas fa-scroll"></i></span>Publications</h2>
+              <div class="publication-nav" aria-label="Publication groups">
+                <a href="#first-author-publications">First-author</a>
+                <a href="#co-author-publications">Co-author</a>
+              </div>
+            </div>
+            <!-- First-author Publications -->
+            <table class="publication-table"
+              style="width:100%;border:0px;border-spacing:0px 10px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+              <tbody>
+                <tr>
+                  <td style="padding:6px 16px 0px 16px;width:100%;vertical-align:middle" colspan="2">
+                    <h2 class="subsection-title" id="first-author-publications"><strong>First-author
+                        Publications</strong></h2>
+                  </td>
+                </tr>
+              </tbody>
+              <tbody>
+                <tr class="year-row">
+                  <td colspan="2"><span>2026</span></td>
+                </tr>
+              </tbody>
+              <!-- X2SAM -->
+              <tbody>
+                <tr class="paper-row">
+                  <td style="padding:16px;width:20%;vertical-align:middle">
+                    <div class="one">
+                      <div class="two" id='x2sam_image'>
+                        <img src='srcs/papers/x2sam_after.gif' width=100% loading="lazy" decoding="async"
+                          alt="X2SAM animated preview">
+                      </div>
+                      <img src='srcs/papers/x2sam_before.png' width=100% loading="lazy" decoding="async"
+                        alt="X2SAM preview">
                     </div>
-                    <img src='srcs/papers/x2sam_before.png' width=100%>
-                  </div>
-                  <script type="text/javascript">
-                    function x2sam_start() {
-                      document.getElementById('x2sam_image').style.opacity = "1";
-                    }
+                  </td>
+                  <td style="padding:8px;width:80%;vertical-align:middle">
+                    <a href="https://wanghao9610.github.io/X2SAM/">
+                      <span class="papertitle">X2SAM: Any Segmentation in Images and Videos</span><span
+                        class="award-badge">New</span>
+                    </a>
+                    <br>
+                    <strong>Hao Wang</strong>,
+                    <a href="https://scholar.google.com/citations?user=3PFZAg0AAAAJ&hl">Limeng Qiao</a>,
+                    <a href="https://scholar.google.com/citations?user=I0aKo_4AAAAJ&hl">Chi Zhang</a>,
+                    <a href="https://scholar.google.com/citations?user=NRG_hpYAAAAJ&hl">Guanglu Wan</a>,
+                    <a href="https://forestlinma.com/">Lin Ma</a>,
+                    <a href="https://scholar.google.com/citations?user=c3iwWRcAAAAJ&hl">Xiangyuan Lan</a>,
+                    <a href="https://scholar.google.com/citations?user=voxznZAAAAAJ&hl">Xiaodan Liang</a>,
+                    <br>
+                    <em>arXiv Preprint</em>, 2026
+                    <br>
+                    <span class="paper-links"><a href="https://wanghao9610.github.io/X2SAM/"><i
+                          class="fas fa-arrow-up-right-from-square"></i> Project</a>
+                      <a href="https://arxiv.org/abs/2605.00891"><i class="fas fa-file-lines"></i> Paper</a>
+                      <a class="code-link" href="https://github.com/wanghao9610/X2SAM"><i class="fab fa-github"></i>
+                        Code</a></span>
+                    <p>
+                      A unified segmentation MLLM that extends any-segmentation from images to videos, supporting
+                      conversational instructions and visual prompts through Mask Memory for temporally consistent
+                      pixel-level perception.
+                    </p>
+                  </td>
+                </tr>
+              </tbody>
 
-                    function x2sam_stop() {
-                      document.getElementById('x2sam_image').style.opacity = "0";
-                    }
-                    x2sam_stop()
-                  </script>
-                </td>
-                <td style="padding:8px;width:80%;vertical-align:middle">
-                  <a href="https://wanghao9610.github.io/X2SAM/">
-                    <span class="papertitle">X2SAM: Any Segmentation in Images and Videos</span><span
-                      class="award-badge">New</span>
-                  </a>
-                  <br>
-                  <strong>Hao Wang</strong>,
-                  <a href="https://scholar.google.com/citations?user=3PFZAg0AAAAJ&hl">Limeng Qiao</a>,
-                  <a href="https://scholar.google.com/citations?user=I0aKo_4AAAAJ&hl">Chi Zhang</a>,
-                  <a href="https://scholar.google.com/citations?user=NRG_hpYAAAAJ&hl">Guanglu Wan</a>,
-                  <a href="https://forestlinma.com/">Lin Ma</a>,
-                  <a href="https://scholar.google.com/citations?user=c3iwWRcAAAAJ&hl">Xiangyuan Lan</a>,
-                  <a href="https://scholar.google.com/citations?user=voxznZAAAAAJ&hl">Xiaodan Liang</a>,
-                  <br>
-                  <em>arXiv Preprint</em>, 2026
-                  <br>
-                  <span class="paper-links"><a href="https://wanghao9610.github.io/X2SAM/">Project</a>
-                    <a href="https://arxiv.org/abs/2605.00891">Paper</a>
-                    <a class="code-link" href="https://github.com/wanghao9610/X2SAM"><i class="fab fa-github"></i>
-                      Code</a></span>
-                  <p>
-                    A unified segmentation MLLM that extends any-segmentation from images to videos, supporting
-                    conversational instructions and visual prompts through Mask Memory for temporally consistent
-                    pixel-level perception.
-                  </p>
-                </td>
-              </tr>
-            </tbody>
-
-            <!-- X-SAM -->
-            <tbody>
-              <tr class="paper-row" onmouseout="xsam_stop()" onmouseover="xsam_start()">
-                <td style="padding:16px;width:20%;vertical-align:middle">
-                  <div class="one">
-                    <div class="two" id='xsam_image'>
-                      <img src='srcs/papers/xsam_after.jpg' width=100%>
+              <tbody>
+                <tr class="year-row">
+                  <td colspan="2"><span>2025</span></td>
+                </tr>
+              </tbody>
+              <!-- X-SAM -->
+              <tbody>
+                <tr class="paper-row">
+                  <td style="padding:16px;width:20%;vertical-align:middle">
+                    <div class="one">
+                      <div class="two" id='xsam_image'>
+                        <img src='srcs/papers/xsam_after.jpg' width=100% loading="lazy" decoding="async"
+                          alt="X-SAM hover preview">
+                      </div>
+                      <img src='srcs/papers/xsam_before.jpg' width=100% loading="lazy" decoding="async"
+                        alt="X-SAM preview">
                     </div>
-                    <img src='srcs/papers/xsam_before.jpg' width=100%>
-                  </div>
-                  <script type="text/javascript">
-                    function xsam_start() {
-                      document.getElementById('xsam_image').style.opacity = "1";
-                    }
+                  </td>
+                  <td style="padding:8px;width:80%;vertical-align:middle">
+                    <a href="https://wanghao9610.github.io/X-SAM/">
+                      <span class="papertitle">X-SAM: From Segment Anything to Any Segmentation</span><span
+                        class="award-badge">AAAI 2026</span>
+                    </a>
+                    <br>
+                    <strong>Hao Wang</strong>,
+                    <a href="https://scholar.google.com/citations?user=3PFZAg0AAAAJ&hl">Limeng Qiao</a>,
+                    <a href="https://scholar.google.com/citations?user=4sKGNB0AAAAJ&hl">Zequn Jie</a>,
+                    <a href="https://zhijian11.github.io/">Zhijian Huang</a>,
+                    <a href="https://fcjian.github.io/">Chengjian Feng</a>,
+                    <a href="https://openreview.net/profile?id=%7EZheng_Qingfang1">Qingfang Zheng</a>,
+                    <a href="https://forestlinma.com/">Lin Ma</a>,
+                    <a href="https://scholar.google.com/citations?user=c3iwWRcAAAAJ&hl">Xiangyuan Lan</a>,
+                    <a href="https://scholar.google.com/citations?user=voxznZAAAAAJ&hl">Xiaodan Liang</a>,
+                    <br>
+                    <em>AAAI</em>, 2026
+                    <br>
+                    <span class="paper-links"><a href="https://wanghao9610.github.io/X-SAM/"><i
+                          class="fas fa-arrow-up-right-from-square"></i> Project</a>
+                      <a href="https://arxiv.org/abs/2508.04655"><i class="fas fa-file-lines"></i> Paper</a>
+                      <a class="code-link" href="https://github.com/wanghao9610/X-SAM"><i class="fab fa-github"></i>
+                        Code</a></span>
+                    <p>
+                      A novel unified multimodal large language model (MLLM) framework, which extends the segmentation
+                      from segment
+                      anything to any segmentation, enhancing pixel-level perceptual understanding.
+                    </p>
+                  </td>
+                </tr>
+              </tbody>
 
-                    function xsam_stop() {
-                      document.getElementById('xsam_image').style.opacity = "0";
-                    }
-                    xsam_stop()
-                  </script>
-                </td>
-                <td style="padding:8px;width:80%;vertical-align:middle">
-                  <a href="https://wanghao9610.github.io/X-SAM/">
-                    <span class="papertitle">X-SAM: From Segment Anything to Any Segmentation</span><span
-                      class="award-badge">AAAI 2026</span>
-                  </a>
-                  <br>
-                  <strong>Hao Wang</strong>,
-                  <a href="https://scholar.google.com/citations?user=3PFZAg0AAAAJ&hl">Limeng Qiao</a>,
-                  <a href="https://scholar.google.com/citations?user=4sKGNB0AAAAJ&hl">Zequn Jie</a>,
-                  <a href="https://zhijian11.github.io/">Zhijian Huang</a>,
-                  <a href="https://fcjian.github.io/">Chengjian Feng</a>,
-                  <a href="https://openreview.net/profile?id=%7EZheng_Qingfang1">Qingfang Zheng</a>,
-                  <a href="https://forestlinma.com/">Lin Ma</a>,
-                  <a href="https://scholar.google.com/citations?user=c3iwWRcAAAAJ&hl">Xiangyuan Lan</a>,
-                  <a href="https://scholar.google.com/citations?user=voxznZAAAAAJ&hl">Xiaodan Liang</a>,
-                  <br>
-                  <em>AAAI</em>, 2026
-                  <br>
-                  <span class="paper-links"><a href="https://wanghao9610.github.io/X-SAM/">Project</a>
-                    <a href="https://arxiv.org/abs/2508.04655">Paper</a>
-                    <a class="code-link" href="https://github.com/wanghao9610/X-SAM"><i class="fab fa-github"></i>
-                      Code</a></span>
-                  <p>
-                    A novel unified multimodal large language model (MLLM) framework, which extends the segmentation
-                    from segment
-                    anything to any segmentation, enhancing pixel-level perceptual understanding.
-                  </p>
-                </td>
-              </tr>
-            </tbody>
-
-            <!-- OV-DINO -->
-            <tbody>
-              <tr class="paper-row" onmouseout="ovdino_stop()" onmouseover="ovdino_start()">
-                <td style="padding:16px;width:20%;vertical-align:middle">
-                  <div class="one">
-                    <div class="two" id='ovdino_image'>
-                      <img src='srcs/papers/ovdino_after.jpg' width=100%>
+              <!-- OV-DINO -->
+              <tbody>
+                <tr class="year-row">
+                  <td colspan="2"><span>2024</span></td>
+                </tr>
+              </tbody>
+              <tbody>
+                <tr class="paper-row">
+                  <td style="padding:16px;width:20%;vertical-align:middle">
+                    <div class="one">
+                      <div class="two" id='ovdino_image'>
+                        <img src='srcs/papers/ovdino_after.jpg' width=100% loading="lazy" decoding="async"
+                          alt="OV-DINO hover preview">
+                      </div>
+                      <img src='srcs/papers/ovdino_before.jpg' width=100% loading="lazy" decoding="async"
+                        alt="OV-DINO preview">
                     </div>
-                    <img src='srcs/papers/ovdino_before.jpg' width=100%>
-                  </div>
-                  <script type="text/javascript">
-                    function ovdino_start() {
-                      document.getElementById('ovdino_image').style.opacity = "1";
-                    }
+                  </td>
+                  <td style="padding:8px;width:80%;vertical-align:middle">
+                    <a href="https://wanghao9610.github.io/OV-DINO/">
+                      <span class="papertitle">OV-DINO: Unified Open-Vocabulary Detection with Language-Aware Selective
+                        Fusion</span>
+                    </a>
+                    <br>
+                    <strong>Hao Wang</strong>,
+                    <a href="https://scholar.google.com/citations?user=yVxSn70AAAAJ&hl">Pengzhen Ren</a>,
+                    <a href="https://scholar.google.com/citations?user=4sKGNB0AAAAJ&hl">Zequn Jie</a>,
+                    <a href="https://scholar.google.com.sg/citations?user=jXLkbw8AAAAJ&hl">Xiao Dong</a>,
+                    <a href="https://fcjian.github.io/">Chengjian Feng</a>,
+                    <a href="https://scholar.google.com/citations?user=8tPN5CAAAAAJ&hl">Yinlong Qian</a>,
+                    <a href="https://forestlinma.com/">Lin Ma</a>,
+                    <a href="https://scholar.google.com/citations?user=Awsue7sAAAAJ&hl">Dongmei Jiang</a>,
+                    <a href="https://scholar.google.com/citations?user=o_DllmIAAAAJ&hl">Yaowei Wang</a>,
+                    <a href="https://scholar.google.com/citations?user=c3iwWRcAAAAJ&hl">Xiangyuan Lan</a>,
+                    <a href="https://scholar.google.com/citations?user=voxznZAAAAAJ&hl">Xiaodan Liang</a>,
+                    <br>
+                    <em>arXiv Preprint</em>, 2024
+                    <br>
+                    <span class="paper-links"><a href="https://wanghao9610.github.io/OV-DINO/"><i
+                          class="fas fa-arrow-up-right-from-square"></i> Project</a>
+                      <a href="https://arxiv.org/abs/2407.07844"><i class="fas fa-file-lines"></i> Paper</a>
+                      <a class="code-link" href="https://github.com/wanghao9610/OV-DINO"><i class="fab fa-github"></i>
+                        Code</a></span>
+                    <p>
+                      A novel unified open-vocabulary detection method, which is pre-trained on
+                      diverse
+                      large-scale datasets with language-aware selective fusion in a unified
+                      framework.
+                    </p>
+                  </td>
+                </tr>
+              </tbody>
 
-                    function ovdino_stop() {
-                      document.getElementById('ovdino_image').style.opacity = "0";
-                    }
-                    ovdino_stop()
-                  </script>
-                </td>
-                <td style="padding:8px;width:80%;vertical-align:middle">
-                  <a href="https://wanghao9610.github.io/OV-DINO/">
-                    <span class="papertitle">OV-DINO: Unified Open-Vocabulary Detection with Language-Aware Selective
-                      Fusion</span>
-                  </a>
-                  <br>
-                  <strong>Hao Wang</strong>,
-                  <a href="https://scholar.google.com/citations?user=yVxSn70AAAAJ&hl">Pengzhen Ren</a>,
-                  <a href="https://scholar.google.com/citations?user=4sKGNB0AAAAJ&hl">Zequn Jie</a>,
-                  <a href="https://scholar.google.com.sg/citations?user=jXLkbw8AAAAJ&hl">Xiao Dong</a>,
-                  <a href="https://fcjian.github.io/">Chengjian Feng</a>,
-                  <a href="https://scholar.google.com/citations?user=8tPN5CAAAAAJ&hl">Yinlong Qian</a>,
-                  <a href="https://forestlinma.com/">Lin Ma</a>,
-                  <a href="https://scholar.google.com/citations?user=Awsue7sAAAAJ&hl">Dongmei Jiang</a>,
-                  <a href="https://scholar.google.com/citations?user=o_DllmIAAAAJ&hl">Yaowei Wang</a>,
-                  <a href="https://scholar.google.com/citations?user=c3iwWRcAAAAJ&hl">Xiangyuan Lan</a>,
-                  <a href="https://scholar.google.com/citations?user=voxznZAAAAAJ&hl">Xiaodan Liang</a>,
-                  <br>
-                  <em>arXiv Preprint</em>, 2024
-                  <br>
-                  <span class="paper-links"><a href="https://wanghao9610.github.io/OV-DINO/">Project</a>
-                    <a href="https://arxiv.org/abs/2407.07844">Paper</a>
-                    <a class="code-link" href="https://github.com/wanghao9610/OV-DINO"><i class="fab fa-github"></i>
-                      Code</a></span>
-                  <p>
-                    A novel unified open-vocabulary detection method, which is pre-trained on
-                    diverse
-                    large-scale datasets with language-aware selective fusion in a unified
-                    framework.
-                  </p>
-                </td>
-              </tr>
-            </tbody>
-
-            <!-- TMANet -->
-            <tbody>
-              <tr class="paper-row" onmouseout="tmanet_stop()" onmouseover="tmanet_start()">
-                <td style="padding:16px;width:20%;vertical-align:middle">
-                  <div class="one">
-                    <div class="two" id='tmanet_image'>
-                      <img src='srcs/papers/tmanet.jpg' width=100%>
+              <!-- TMANet -->
+              <tbody>
+                <tr class="year-row">
+                  <td colspan="2"><span>2021</span></td>
+                </tr>
+              </tbody>
+              <tbody>
+                <tr class="paper-row">
+                  <td style="padding:16px;width:20%;vertical-align:middle">
+                    <div class="one">
+                      <div class="two" id='tmanet_image'>
+                        <img src='srcs/papers/tmanet.jpg' width=100% loading="lazy" decoding="async"
+                          alt="TMANet preview">
+                      </div>
+                      <img src='srcs/papers/tmanet.jpg' width=100% loading="lazy" decoding="async" alt="TMANet preview">
                     </div>
-                    <img src='srcs/papers/tmanet.jpg' width=100%>
-                  </div>
-                  <script type="text/javascript">
-                    function tmanet_start() {
-                      document.getElementById('tmanet_image').style.opacity = "1";
-                    }
+                  </td>
+                  <td style="padding:8px;width:80%;vertical-align:middle">
+                    <a href="https://wanghao9610.github.io/TMANet/">
+                      <span class="papertitle">TMANet: Temporal Memory Attention for Video Semantic
+                        Segmentation</span><span class="award-badge">ICIP 2021</span>
+                    </a>
+                    <br>
+                    <strong>Hao Wang</strong>,
+                    <a href="https://scholar.google.com/citations?user=NDPvobAAAAAJ">Weining Wang</a>,
+                    <a href="https://scholar.google.com/citations?user=sOI-S7oAAAAJ">Jing Liu</a>,
+                    <br>
+                    <em>ICIP</em>, 2021
+                    <br>
+                    <span class="paper-links"><a href="https://arxiv.org/abs/2102.08643"><i
+                          class="fas fa-file-lines"></i> Paper</a>
+                      <a class="code-link" href="https://github.com/wanghao9610/TMANet"><i class="fab fa-github"></i>
+                        Code</a></span>
+                    <p>
+                      A novel self-attention and temporal memory mechanism to capture long-range temporal relations
+                      between frames, avoiding the computational cost of optical flow prediction.
+                    </p>
+                  </td>
+                </tr>
+              </tbody>
 
-                    function tmanet_stop() {
-                      document.getElementById('tmanet_image').style.opacity = "0";
-                    }
-                    tmanet_stop()
-                  </script>
-                </td>
-                <td style="padding:8px;width:80%;vertical-align:middle">
-                  <a href="https://wanghao9610.github.io/TMANet/">
-                    <span class="papertitle">TMANet: Temporal Memory Attention for Video Semantic
-                      Segmentation</span><span class="award-badge">ICIP 2021</span>
-                  </a>
-                  <br>
-                  <strong>Hao Wang</strong>,
-                  <a href="https://scholar.google.com/citations?user=NDPvobAAAAAJ">Weining Wang</a>,
-                  <a href="https://scholar.google.com/citations?user=sOI-S7oAAAAJ">Jing Liu</a>,
-                  <br>
-                  <em>ICIP</em>, 2021
-                  <br>
-                  <span class="paper-links"><a href="https://arxiv.org/abs/2102.08643">Paper</a>
-                    <a class="code-link" href="https://github.com/wanghao9610/TMANet"><i class="fab fa-github"></i>
-                      Code</a></span>
-                  <p>
-                    A novel self-attention and temporal memory mechanism to capture long-range temporal relations
-                    between frames, avoiding the computational cost of optical flow prediction.
-                  </p>
-                </td>
-              </tr>
-            </tbody>
-
-            <!-- Co-author Publications -->
-            <tbody>
-              <tr>
-                <td style="padding:6px 16px 0px 16px;width:100%;vertical-align:middle" colspan="2">
-                  <h2 class="subsection-title"><strong>Co-author Publications</strong></h2>
-                </td>
-              </tr>
-            </tbody>
-            <!-- WL-MSR -->
-            <tbody>
-              <tr class="paper-row" onmouseout="wlmsr_stop()" onmouseover="wlmsr_start()">
-                <td style="padding:16px;width:20%;vertical-align:middle">
-                  <div class="one">
-                    <div class="two" id='wlmsr_image'>
-                      <img src='srcs/papers/wlmsr.jpg' width=100%>
+              <!-- Co-author Publications -->
+              <tbody>
+                <tr>
+                  <td style="padding:6px 16px 0px 16px;width:100%;vertical-align:middle" colspan="2">
+                    <h2 class="subsection-title" id="co-author-publications"><strong>Co-author Publications</strong>
+                    </h2>
+                  </td>
+                </tr>
+              </tbody>
+              <!-- WL-MSR -->
+              <tbody>
+                <tr class="year-row">
+                  <td colspan="2"><span>2023</span></td>
+                </tr>
+              </tbody>
+              <tbody>
+                <tr class="paper-row">
+                  <td style="padding:16px;width:20%;vertical-align:middle">
+                    <div class="one">
+                      <div class="two" id='wlmsr_image'>
+                        <img src='srcs/papers/wlmsr.jpg' width=100% loading="lazy" decoding="async"
+                          alt="WL-MSR preview">
+                      </div>
+                      <img src='srcs/papers/wlmsr.jpg' width=100% loading="lazy" decoding="async" alt="WL-MSR preview">
                     </div>
-                    <img src='srcs/papers/wlmsr.jpg' width=100%>
-                  </div>
-                  <script type="text/javascript">
-                    function wlmsr_start() {
-                      document.getElementById('wlmsr_image').style.opacity = "1";
-                    }
-
-                    function wlmsr_stop() {
-                      document.getElementById('wlmsr_image').style.opacity = "0";
-                    }
-                    wlmsr_stop()
-                  </script>
-                </td>
-                <td style="padding:8px;width:80%;vertical-align:middle">
-                  <a href="https://ieeexplore.ieee.org/abstract/document/10096063">
-                    <span class="papertitle">WL-MSR: Watch and Listen for Multimodal Subtitle Recognition</span><span
-                      class="award-badge">ICASSP 2023</span>
-                  </a>
-                  <br>
-                  <a href="https://scholar.google.com/citations?user=X21Fz-EAAAAJ">Jiawei Liu</a>,
-                  <strong>Hao Wang</strong>,
-                  <a href="https://scholar.google.com/citations?user=NDPvobAAAAAJ">Weining Wang</a>,
-                  <a href="https://scholar.google.com/citations?user=XWunp9YAAAAJ">Xingjian He</a>,
-                  <a href="https://scholar.google.com/citations?user=sOI-S7oAAAAJ">Jing Liu</a>,
-                  <br>
-                  <em>ICASSP</em>, 2023
-                  <br>
-                  <span class="paper-links"><a
-                      href="https://ieeexplore.ieee.org/abstract/document/10096063">Paper</a></span>
-                  <p>
-                    A framework that fuses OCR and ASR information using a Transformer model with mask/crop strategies
-                    and multi-level identity embeddings to generate comprehensive video subtitles.
-                  </p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                  </td>
+                  <td style="padding:8px;width:80%;vertical-align:middle">
+                    <a href="https://ieeexplore.ieee.org/abstract/document/10096063">
+                      <span class="papertitle">WL-MSR: Watch and Listen for Multimodal Subtitle Recognition</span><span
+                        class="award-badge">ICASSP 2023</span>
+                    </a>
+                    <br>
+                    <a href="https://scholar.google.com/citations?user=X21Fz-EAAAAJ">Jiawei Liu</a>,
+                    <strong>Hao Wang</strong>,
+                    <a href="https://scholar.google.com/citations?user=NDPvobAAAAAJ">Weining Wang</a>,
+                    <a href="https://scholar.google.com/citations?user=XWunp9YAAAAJ">Xingjian He</a>,
+                    <a href="https://scholar.google.com/citations?user=sOI-S7oAAAAJ">Jing Liu</a>,
+                    <br>
+                    <em>ICASSP</em>, 2023
+                    <br>
+                    <span class="paper-links"><a href="https://ieeexplore.ieee.org/abstract/document/10096063"><i
+                          class="fas fa-file-lines"></i> Paper</a></span>
+                    <p>
+                      A framework that fuses OCR and ASR information using a Transformer model with mask/crop strategies
+                      and multi-level identity embeddings to generate comprehensive video subtitles.
+                    </p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
 
           <!-- Experience -->
-          <table class="section-table"
-            style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-            <tbody>
-              <tr>
-                <td style="padding:16px;width:100%;vertical-align:middle">
-                  <h2><span class="section-icon"><i class="fas fa-briefcase"></i></span>Experience</h2>
-                  <div class="timeline">
-                    <div class="timeline-item">
-                      <div class="timeline-date">2025.01 - Present</div>
-                      <div class="timeline-content">
-                        Research intern in Meituan M17-MM, co-worked with <a
-                          href="https://scholar.google.com/citations?user=3PFZAg0AAAAJ&hl">Limeng Qiao</a>, <a
-                          href="https://forestlinma.com/">Lin Ma</a> and <a
-                          href="https://scholar.google.com/citations?user=NRG_hpYAAAAJ&hl">Guanglu Wan</a>.
-                      </div>
-                    </div>
-                    <div class="timeline-item">
-                      <div class="timeline-date">2022.07 - 2025.01</div>
-                      <div class="timeline-content">
-                        Research intern in Meituan Vision Intelligence Department, co-worked with <a
-                          href="https://scholar.google.com/citations?user=4sKGNB0AAAAJ&hl">Zequn Jie</a> and <a
-                          href="https://forestlinma.com/">Lin Ma</a>.
-                      </div>
-                    </div>
-                    <div class="timeline-item">
-                      <div class="timeline-date">2021.05 - 2021.08</div>
-                      <div class="timeline-content">Application research intern in Tencent AI Platform Department.</div>
-                    </div>
-                    <div class="timeline-item">
-                      <div class="timeline-date">2019.09 - 2020.07</div>
-                      <div class="timeline-content">Application project intern in Huawei Photo Processing Department.
-                      </div>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <section class="section-card" id="experience">
+            <h2><span class="section-icon"><i class="fas fa-briefcase"></i></span>Experience</h2>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-date">2025.01 - Present</div>
+                <div class="timeline-content">
+                  Research intern in Meituan M17-MM, co-worked with <a
+                    href="https://scholar.google.com/citations?user=3PFZAg0AAAAJ&hl">Limeng Qiao</a>, <a
+                    href="https://forestlinma.com/">Lin Ma</a> and <a
+                    href="https://scholar.google.com/citations?user=NRG_hpYAAAAJ&hl">Guanglu Wan</a>.
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-date">2022.07 - 2025.01</div>
+                <div class="timeline-content">
+                  Research intern in Meituan Vision Intelligence Department, co-worked with <a
+                    href="https://scholar.google.com/citations?user=4sKGNB0AAAAJ&hl">Zequn Jie</a> and <a
+                    href="https://forestlinma.com/">Lin Ma</a>.
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-date">2021.05 - 2021.08</div>
+                <div class="timeline-content">Application research intern in Tencent AI Platform Department.</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-date">2019.09 - 2020.07</div>
+                <div class="timeline-content">Application project intern in Huawei Photo Processing Department.</div>
+              </div>
+            </div>
+          </section>
 
           <!-- Education -->
-          <table class="section-table"
-            style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-            <tbody>
-              <tr>
-                <td style="padding:16px;width:100%;vertical-align:middle">
-                  <h2><span class="section-icon"><i class="fas fa-graduation-cap"></i></span>Education</h2>
-                  <div class="timeline">
-                    <div class="timeline-item">
-                      <div class="timeline-date">2022.09 - Present</div>
-                      <div class="timeline-content">
-                        Ph.D. student in the School of Intelligent Systems Engineering, SYSU, and Pengcheng Laboratory,
-                        co-supervised
-                        by
-                        <a href="https://scholar.google.com/citations?user=voxznZAAAAAJ&hl">Prof. Xiaodan Liang</a> and
-                        <a href="https://scholar.google.com/citations?user=c3iwWRcAAAAJ&hl">Associate Prof. Xiangyuan
-                          Lan</a>.
-                      </div>
-                    </div>
-                    <div class="timeline-item">
-                      <div class="timeline-date">2019.09 - 2022.06</div>
-                      <div class="timeline-content">
-                        Master student in the School of Artificial Intelligence, UCAS, and the Institute of Automation,
-                        CAS,
-                        supervised by <a href="https://scholar.google.com/citations?user=sOI-S7oAAAAJ&hl">Prof. Jing
-                          Liu</a>.
-                      </div>
-                    </div>
-                    <div class="timeline-item">
-                      <div class="timeline-date">2015.09 - 2019.06</div>
-                      <div class="timeline-content">Bachelor student in the School of Electronic and Information
-                        Engineering, BJTU.</div>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <section class="section-card" id="education">
+            <h2><span class="section-icon"><i class="fas fa-graduation-cap"></i></span>Education</h2>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-date">2022.09 - Present</div>
+                <div class="timeline-content">
+                  Ph.D. student in the School of Intelligent Systems Engineering, SYSU, and Pengcheng Laboratory,
+                  co-supervised by
+                  <a href="https://scholar.google.com/citations?user=voxznZAAAAAJ&hl">Prof. Xiaodan Liang</a> and
+                  <a href="https://scholar.google.com/citations?user=c3iwWRcAAAAJ&hl">Associate Prof. Xiangyuan
+                    Lan</a>.
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-date">2019.09 - 2022.06</div>
+                <div class="timeline-content">
+                  Master student in the School of Artificial Intelligence, UCAS, and the Institute of Automation, CAS,
+                  supervised by <a href="https://scholar.google.com/citations?user=sOI-S7oAAAAJ&hl">Prof. Jing Liu</a>.
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-date">2015.09 - 2019.06</div>
+                <div class="timeline-content">Bachelor student in the School of Electronic and Information Engineering,
+                  BJTU.</div>
+              </div>
+            </div>
+          </section>
 
           <!-- Services -->
-          <section class="section-card">
+          <section class="section-card" id="services">
             <h2><span class="section-icon"><i class="fas fa-handshake-angle"></i></span>Services</h2>
             <div class="info-list">
               <div class="info-item">
@@ -510,7 +500,7 @@
           </section>
 
           <!-- Awards -->
-          <section class="section-card">
+          <section class="section-card" id="awards">
             <h2><span class="section-icon"><i class="fas fa-trophy"></i></span>Awards</h2>
             <div class="info-list">
               <div class="info-item">
@@ -523,103 +513,21 @@
 
           <!-- MapMyVisitors -->
           <div id="mapmyvisitors-container"></div>
-          <script type="text/javascript">
-              (function () {
-                const CACHE_KEY = 'mapmyvisitors_last_load';
-                const CACHE_DURATION = 86400000; // 24 hours in milliseconds
-                const container = document.getElementById('mapmyvisitors-container');
-
-                function loadMapScript() {
-                  const lastLoad = localStorage.getItem(CACHE_KEY);
-                  const now = Date.now();
-
-                  // Check if we loaded within the cache duration
-                  if (lastLoad && (now - parseInt(lastLoad)) < CACHE_DURATION) {
-                    console.log('MapMyVisitors: Using cached version, skipping reload');
-                    return;
-                  }
-
-                  // Load the script
-                  const script = document.createElement('script');
-                  script.type = 'text/javascript';
-                  script.id = 'mapmyvisitors';
-                  script.src = '//mapmyvisitors.com/map.js?d=nq_TN8mwe6ePYMGkPX8UT8YNMkNICnUTSaVc7okfb5k&cl=ffffff&w=500&co=000000&ct=808080&t=n';
-                  container.appendChild(script);
-
-                  // Update cache timestamp
-                  localStorage.setItem(CACHE_KEY, now.toString());
-                }
-
-                // Use Intersection Observer for lazy loading
-                if ('IntersectionObserver' in window) {
-                  const observer = new IntersectionObserver((entries) => {
-                    entries.forEach((entry) => {
-                      if (entry.isIntersecting) {
-                        loadMapScript();
-                        observer.disconnect(); // Stop observing after loading
-                      }
-                    });
-                  }, {
-                    rootMargin: '100px' // Load when within 100px of viewport
-                  });
-
-                  observer.observe(container);
-                } else {
-                  // Fallback for browsers without Intersection Observer
-                  loadMapScript();
-                }
-              })();
-          </script>
 
           <!-- Footer -->
-          <table class="site-footer"
-            style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-            <tbody>
-              <tr>
-                <td style="padding:0px">
-                  <p>
-                    Template is stolen from <a href="https://jonbarron.info/">Jon Barron's website</a> and modified by
-                    me. Feel free to steal this website's <a
-                      href="https://github.com/wanghao9610/wanghao9610.github.io">source
-                      code</a>.
-                  </p>
-                  <p class="last-updated">Last updated: <span id="last-updated-value">-</span></p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <script>
-            (function () {
-              const updated = new Date(document.lastModified);
-              const target = document.getElementById('last-updated-value');
-
-              if (target && !Number.isNaN(updated.getTime())) {
-                target.textContent = new Intl.DateTimeFormat('en-US', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric'
-                }).format(updated);
-              }
-            })();
-          </script>
-
-          <!-- Counter -->
-          <table class="site-counter"
-            style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-            <tbody>
-              <tr>
-                <td style="padding:0px 16px;width:100%;vertical-align:middle">
-                  <p>
-                    <i class="fas fa-eye"></i> <span id="busuanzi_value_site_pv" class="counter-number">-</span> views
-                    &nbsp;&nbsp;|&nbsp;&nbsp;
-                    <i class="fas fa-user"></i> <span id="busuanzi_value_site_uv" class="counter-number">-</span>
-                    visitors
-                  </p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <footer class="site-footer">
+            <p>
+              Template is stolen from <a href="https://jonbarron.info/">Jon Barron's website</a> and modified by
+              me. Feel free to steal this website's <a
+                href="https://github.com/wanghao9610/wanghao9610.github.io">source code</a>.
+            </p>
+            <p class="last-updated">Last updated: <span id="last-updated-value">-</span></p>
+            <p class="site-counter">
+              <i class="fas fa-eye"></i> <span id="busuanzi_value_site_pv" class="counter-number">-</span> views
+              <span class="footer-separator">|</span>
+              <i class="fas fa-user"></i> <span id="busuanzi_value_site_uv" class="counter-number">-</span> visitors
+            </p>
+          </footer>
 
         </td>
       </tr>
