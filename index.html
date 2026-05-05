@@ -77,8 +77,9 @@
                     Hao Wang (王豪)
                   </p>
                   <p>
-                    I'm currently a Ph.D. candidate at <a href="https://www.sysu-hcp.net/">HCP Lab</a>, <a href="https://www.sysu.edu.cn/">SYSU</a>, and <a
-                      href="https://www.pcl.ac.cn/">Pengcheng Laboratory</a>, supervised
+                    I'm currently a Ph.D. candidate at <a href="https://www.sysu-hcp.net/">HCP Lab</a>, <a
+                      href="https://www.sysu.edu.cn/">SYSU</a>, and <a href="https://www.pcl.ac.cn/">Pengcheng
+                      Laboratory</a>, supervised
                     by
                     <a href="https://scholar.google.com/citations?user=voxznZAAAAAJ&hl">Prof. Xiaodan Liang</a> and <a
                       href="https://scholar.google.com/citations?user=c3iwWRcAAAAJ&hl">Associate Prof. Xiangyuan
@@ -90,7 +91,8 @@
                     My research interests include:
                   <ul>
                     <li>Open-ended computer vision</li>
-                    <li>Multimodal large language models</li>
+                    <li>Multi-modal large language models</li>
+                    <li>Multi-modal agentic models</li>
                   </ul>
                   <strong>Open source promotes the development of technology.</strong>
                   <br><br>
@@ -128,13 +130,13 @@
                   <h2>✨ News</h2>
                   <ul>
                     <li>[<strong>2026.04</strong>] Excited to share that our latest project <a
-                      href="https://wanghao9610.github.io/X2SAM/">X2SAM</a> is launched!</li>
+                        href="https://wanghao9610.github.io/X2SAM/">X2SAM</a> is launched!</li>
                   </ul>
                   <ul>
                     <li>[<strong>2025.11</strong>] Happy to announce that our paper <a
                         href="https://wanghao9610.github.io/X-SAM/">X-SAM</a> is accepted by AAAI 2026.</li>
                   </ul>
-       
+
                 </td>
               </tr>
             </tbody>
@@ -530,55 +532,55 @@
               </tr>
             </tbody>
           </table>
-          
+
           <!-- MapMyVisitors -->
           <div id="mapmyvisitors-container"></div>
           <script type="text/javascript">
-            (function () {
-              const CACHE_KEY = 'mapmyvisitors_last_load';
-              const CACHE_DURATION = 86400000; // 24 hours in milliseconds
-              const container = document.getElementById('mapmyvisitors-container');
+              (function () {
+                const CACHE_KEY = 'mapmyvisitors_last_load';
+                const CACHE_DURATION = 86400000; // 24 hours in milliseconds
+                const container = document.getElementById('mapmyvisitors-container');
 
-              function loadMapScript() {
-                const lastLoad = localStorage.getItem(CACHE_KEY);
-                const now = Date.now();
+                function loadMapScript() {
+                  const lastLoad = localStorage.getItem(CACHE_KEY);
+                  const now = Date.now();
 
-                // Check if we loaded within the cache duration
-                if (lastLoad && (now - parseInt(lastLoad)) < CACHE_DURATION) {
-                  console.log('MapMyVisitors: Using cached version, skipping reload');
-                  return;
+                  // Check if we loaded within the cache duration
+                  if (lastLoad && (now - parseInt(lastLoad)) < CACHE_DURATION) {
+                    console.log('MapMyVisitors: Using cached version, skipping reload');
+                    return;
+                  }
+
+                  // Load the script
+                  const script = document.createElement('script');
+                  script.type = 'text/javascript';
+                  script.id = 'mapmyvisitors';
+                  script.src = '//mapmyvisitors.com/map.js?d=nq_TN8mwe6ePYMGkPX8UT8YNMkNICnUTSaVc7okfb5k&cl=ffffff&w=500&co=000000&ct=808080&t=n';
+                  container.appendChild(script);
+
+                  // Update cache timestamp
+                  localStorage.setItem(CACHE_KEY, now.toString());
                 }
 
-                // Load the script
-                const script = document.createElement('script');
-                script.type = 'text/javascript';
-                script.id = 'mapmyvisitors';
-                script.src = '//mapmyvisitors.com/map.js?d=nq_TN8mwe6ePYMGkPX8UT8YNMkNICnUTSaVc7okfb5k&cl=ffffff&w=500&co=000000&ct=808080&t=n';
-                container.appendChild(script);
-
-                // Update cache timestamp
-                localStorage.setItem(CACHE_KEY, now.toString());
-              }
-
-              // Use Intersection Observer for lazy loading
-              if ('IntersectionObserver' in window) {
-                const observer = new IntersectionObserver((entries) => {
-                  entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                      loadMapScript();
-                      observer.disconnect(); // Stop observing after loading
-                    }
+                // Use Intersection Observer for lazy loading
+                if ('IntersectionObserver' in window) {
+                  const observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                      if (entry.isIntersecting) {
+                        loadMapScript();
+                        observer.disconnect(); // Stop observing after loading
+                      }
+                    });
+                  }, {
+                    rootMargin: '100px' // Load when within 100px of viewport
                   });
-                }, {
-                  rootMargin: '100px' // Load when within 100px of viewport
-                });
 
-                observer.observe(container);
-              } else {
-                // Fallback for browsers without Intersection Observer
-                loadMapScript();
-              }
-            })();
+                  observer.observe(container);
+                } else {
+                  // Fallback for browsers without Intersection Observer
+                  loadMapScript();
+                }
+              })();
           </script>
 
           <!-- Footer -->
