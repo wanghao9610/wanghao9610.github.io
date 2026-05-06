@@ -104,8 +104,81 @@ function initializeMapMyVisitors() {
     return;
   }
 
+  const section = document.getElementById('visitors') || container.closest('.visitors-section');
+  let observer = null;
+  let renderObserver = null;
+  let fallbackTimer = null;
+
+  function hasRenderedMap() {
+    return Array.from(container.childNodes).some((node) => {
+      if (node.nodeType === Node.TEXT_NODE) {
+        return node.textContent.trim().length > 0;
+      }
+
+      return node.nodeType === Node.ELEMENT_NODE && node.tagName.toLowerCase() !== 'script';
+    });
+  }
+
+  function hideVisitorsSection() {
+    if (fallbackTimer) {
+      window.clearTimeout(fallbackTimer);
+      fallbackTimer = null;
+    }
+
+    if (observer) {
+      observer.disconnect();
+    }
+
+    if (renderObserver) {
+      renderObserver.disconnect();
+    }
+
+    if (section) {
+      section.hidden = true;
+    }
+  }
+
+  function watchForRenderedMap() {
+    if (hasRenderedMap()) {
+      if (fallbackTimer) {
+        window.clearTimeout(fallbackTimer);
+        fallbackTimer = null;
+      }
+
+      if (renderObserver) {
+        renderObserver.disconnect();
+        renderObserver = null;
+      }
+
+      return;
+    }
+
+    if (fallbackTimer) {
+      return;
+    }
+
+    if ('MutationObserver' in window) {
+      renderObserver = new MutationObserver(() => {
+        if (hasRenderedMap()) {
+          window.clearTimeout(fallbackTimer);
+          fallbackTimer = null;
+          renderObserver.disconnect();
+          renderObserver = null;
+        }
+      });
+      renderObserver.observe(container, { childList: true, subtree: true });
+    }
+
+    fallbackTimer = window.setTimeout(() => {
+      if (!hasRenderedMap()) {
+        hideVisitorsSection();
+      }
+    }, 8000);
+  }
+
   function loadMapScript() {
     if (document.getElementById('mapmyvisitors')) {
+      watchForRenderedMap();
       return;
     }
 
@@ -113,11 +186,14 @@ function initializeMapMyVisitors() {
     script.type = 'text/javascript';
     script.id = 'mapmyvisitors';
     script.src = 'https://mapmyvisitors.com/map.js?d=nq_TN8mwe6ePYMGkPX8UT8YNMkNICnUTSaVc7okfb5k&cl=ffffff&w=500&co=000000&ct=808080&t=n';
+    script.onload = watchForRenderedMap;
+    script.onerror = hideVisitorsSection;
     container.appendChild(script);
+    watchForRenderedMap();
   }
 
   if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver((entries) => {
+    observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           loadMapScript();
