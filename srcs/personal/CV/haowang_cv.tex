@@ -1,0 +1,218 @@
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage[margin=0.65in]{geometry}
+\usepackage{xcolor}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage{array}
+\usepackage{ragged2e}
+\usepackage{microtype}
+\usepackage{fontawesome5}
+
+\definecolor{ink}{HTML}{000000}
+\definecolor{muted}{HTML}{000000}
+\definecolor{accent}{HTML}{9AA4B2}
+\definecolor{accentdark}{HTML}{000000}
+\definecolor{accentlight}{HTML}{FFFFFF}
+\definecolor{paper}{HTML}{FFFFFF}
+\definecolor{rule}{HTML}{E5E7EB}
+
+\renewcommand{\familydefault}{\sfdefault}
+
+\hypersetup{
+  colorlinks=true,
+  urlcolor=ink,
+  linkcolor=ink
+}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlist[itemize]{leftmargin=1.2em,itemsep=2pt,topsep=2pt,parsep=0pt}
+\renewcommand{\arraystretch}{1.08}
+
+\titleformat{\section}
+  {\large\bfseries\color{ink}}
+  {}
+  {0pt}
+  {\color{ink}\MakeUppercase}
+\titlespacing*{\section}{0pt}{14pt}{7pt}
+
+\newcommand{\datebadge}[1]{%
+  \begingroup
+  \textcolor{muted}{\footnotesize\bfseries #1}%
+  \endgroup
+}
+
+\newcommand{\pill}[1]{%
+  \begingroup
+  \textcolor{accentdark}{\footnotesize\bfseries #1}%
+  \endgroup
+}
+
+\newcommand{\cvitem}[4]{%
+  \vspace{2pt}
+  \begin{tabularx}{\textwidth}{@{}>{\RaggedRight\arraybackslash}X>{\RaggedLeft\arraybackslash}p{0.23\textwidth}@{}}
+    \textbf{\color{ink}#1} & \datebadge{#2} \\
+    {\small\color{muted}#3} & \\
+  \end{tabularx}
+  \vspace{-2pt}
+  #4
+}
+
+\newcommand{\publication}[5]{%
+  \vspace{2pt}
+  \begin{tabularx}{\textwidth}{@{}>{\RaggedRight\arraybackslash}X>{\RaggedLeft\arraybackslash}p{0.18\textwidth}@{}}
+    \textbf{\href{#1}{\color{ink}#2}} & \datebadge{#3}
+  \end{tabularx}
+  {\small #4}\par
+  \vspace{1pt}
+  {\small\color{muted}#5}\par
+  \vspace{7pt}
+}
+
+\begin{document}
+
+\begin{minipage}{\textwidth}
+    \vspace{9pt}
+    {\Huge\bfseries\color{ink} Hao Wang}\\[7pt]
+    {\large\color{accentdark} Ph.D. Candidate in Computer Vision, Multimodal AI, and Agentic AI}\\
+    {\color{rule}\rule{\linewidth}{0.5pt}}\\[5pt]
+    \begin{tabularx}{\textwidth}{@{}X>{\RaggedLeft\arraybackslash}X@{}}
+      HCP Lab, Sun Yat-sen University \& Pengcheng Laboratory &
+      \faEnvelope\hspace{4pt}\href{mailto:wanghao9610@gmail.com}{wanghao9610@gmail.com} \\
+      Expected graduation: December 2026 &
+      \faHome\hspace{4pt}\href{https://wanghao9610.github.io/}{wanghao9610.github.io} \\
+      Open to industry research roles and collaborations &
+      \faPhone\hspace{4pt}+86 183 0102 8055
+    \end{tabularx}
+    \vspace{4pt}
+\end{minipage}
+
+\section{Profile}
+Ph.D. candidate focused on open-ended visual perception, multimodal large language models, and agentic AI. My recent work builds unified models for image and video segmentation, combining language instructions, visual prompts, open-vocabulary recognition, and temporally consistent pixel-level understanding. I am particularly interested in research systems that connect foundation models with reliable pixel-level perception for practical vision applications. My future research interests will focus on the multi-modal agentic models.
+
+\section{Education}
+\cvitem
+  {Sun Yat-sen University \& Pengcheng Laboratory}
+  {2022.09 -- Present}
+  {Ph.D. student, School of Intelligent Systems Engineering}
+  {\begin{itemize}
+    \item Co-supervised by Prof. Xiaodan Liang and Associate Prof. Xiangyuan Lan.
+    \item Research areas: multimodal large language models, open-ended visual understanding, image/video segmentation.
+    \item Expected to graduate in December 2026; actively seeking research positions in industry.
+  \end{itemize}}
+
+\cvitem
+  {University of Chinese Academy of Sciences \& Institute of Automation, CAS}
+  {2019.09 -- 2022.06}
+  {Master student, School of Artificial Intelligence}
+  {\begin{itemize}
+    \item Supervised by Prof. Jing Liu.
+  \end{itemize}}
+
+\cvitem
+  {Beijing Jiaotong University}
+  {2015.09 -- 2019.06}
+  {Bachelor student, School of Electronic and Information Engineering}
+  {}
+
+\section{Research Contributions}
+  \begin{itemize}
+    \item Built a line of first-author research on open-ended perception, moving from video semantic segmentation to open-vocabulary detection and multimodal any-segmentation.
+    \item Developed multimodal segmentation frameworks that accept both natural-language instructions and visual prompts, aiming to bridge high-level reasoning and dense mask prediction.
+    \item Explored unified image/video segmentation with memory mechanisms for temporally consistent pixel-level understanding across frames.
+    \item Released project pages and code for multiple representative works, reflecting a strong preference for reproducible and open research.
+  \end{itemize}
+
+\section{Research Experience}
+\cvitem
+  {Meituan M17-MM}
+  {2025.01 -- Present}
+  {Research Intern}
+  {\begin{itemize}
+    \item Worked with Limeng Qiao, Lin Ma, and Guanglu Wan on multimodal segmentation and pixel-level perception.
+    \item Developed X2SAM, a unified any-segmentation MLLM for images and videos with conversational instructions and visual prompts.
+    \item Investigated mask memory for preserving object-level consistency in video segmentation and interactive perception.
+  \end{itemize}}
+
+\cvitem
+  {Meituan Vision Intelligence Department}
+  {2022.07 -- 2025.01}
+  {Research Intern}
+  {\begin{itemize}
+    \item Worked with Zequn Jie and Lin Ma on open-vocabulary detection and multimodal segmentation systems.
+    \item Contributed to OV-DINO and X-SAM, advancing open-vocabulary recognition and promptable segmentation.
+    \item Studied language-aware fusion and multimodal supervision for scalable visual recognition and segmentation.
+  \end{itemize}}
+
+\cvitem
+  {Tencent AI Platform Department}
+  {2021.05 -- 2021.08}
+  {Application Research Intern}
+  {\begin{itemize}
+    \item Conducted applied research in AI platform scenarios.
+  \end{itemize}}
+
+\cvitem
+  {Huawei Photo Processing Department}
+  {2019.09 -- 2020.07}
+  {Application Project Intern}
+  {\begin{itemize}
+    \item Worked on applied computer vision projects for photo processing.
+  \end{itemize}}
+
+\section{First-Author Publications}
+\publication
+  {https://wanghao9610.github.io/X2SAM/}
+  {X2SAM: Any Segmentation in Images and Videos}
+  {arXiv, 2026}
+  {\textbf{Hao Wang}, Limeng Qiao, Chi Zhang, Guanglu Wan, Lin Ma, Xiangyuan Lan, Xiaodan Liang}
+  {Unified segmentation MLLM for images and videos, supporting conversational instructions, visual prompts, and temporally consistent mask memory. Extends any-segmentation from static images to videos while preserving dense pixel-level responses. \href{https://arxiv.org/abs/2605.00891}{Paper} \textbar{} \href{https://github.com/wanghao9610/X2SAM}{Code}}
+
+\publication
+  {https://wanghao9610.github.io/X-SAM/}
+  {X-SAM: From Segment Anything to Any Segmentation}
+  {AAAI, 2026}
+  {\textbf{Hao Wang}, Limeng Qiao, Zequn Jie, Zhijian Huang, Chengjian Feng, Qingfang Zheng, Lin Ma, Xiangyuan Lan, Xiaodan Liang}
+  {Unified MLLM framework extending segment-anything capabilities to any segmentation and pixel-level perceptual understanding. Supports flexible segmentation through multimodal inputs and instruction-driven interaction. \href{https://arxiv.org/abs/2508.04655}{Paper} \textbar{} \href{https://github.com/wanghao9610/X-SAM}{Code}}
+
+\publication
+  {https://wanghao9610.github.io/OV-DINO/}
+  {OV-DINO: Unified Open-Vocabulary Detection with Language-Aware Selective Fusion}
+  {arXiv, 2024}
+  {\textbf{Hao Wang}, Pengzhen Ren, Zequn Jie, Xiao Dong, Chengjian Feng, Yinlong Qian, Lin Ma, Dongmei Jiang, Yaowei Wang, Xiangyuan Lan, Xiaodan Liang}
+  {Unified open-vocabulary detector pre-trained on diverse large-scale datasets with language-aware selective fusion. Designed to improve category generalization by aligning visual detection with language semantics. \href{https://arxiv.org/abs/2407.07844}{Paper} \textbar{} \href{https://github.com/wanghao9610/OV-DINO}{Code}}
+
+\publication
+  {https://wanghao9610.github.io/TMANet/}
+  {TMANet: Temporal Memory Attention for Video Semantic Segmentation}
+  {ICIP, 2021}
+  {\textbf{Hao Wang}, Weining Wang, Jing Liu}
+  {Temporal memory attention for long-range video semantic segmentation without optical-flow prediction. \href{https://arxiv.org/abs/2102.08643}{Paper} \textbar{} \href{https://github.com/wanghao9610/TMANet}{Code}}
+
+\section{Additional Publication}
+\publication
+  {https://ieeexplore.ieee.org/abstract/document/10096063}
+  {WL-MSR: Watch and Listen for Multimodal Subtitle Recognition}
+  {ICASSP, 2023}
+  {Jiawei Liu, \textbf{Hao Wang}, Weining Wang, Xingjian He, Jing Liu}
+  {Transformer-based multimodal subtitle recognition using OCR and ASR information with mask/crop strategies and multi-level identity embeddings.}
+
+\section{Professional Service}
+\begin{tabular}{@{}>{\bfseries}l@{\hspace{0.12\textwidth}}l@{}}
+Conference Reviewer & AAAI 2026, ICCV 2023, ECCV 2024 \\
+Journal Reviewer & Proceedings of the IEEE
+\end{tabular}
+
+\section{Awards}
+\begin{tabular}{@{}>{\bfseries}l@{\hspace{0.13\textwidth}}l@{}}
+2021.09 & 1st place in the 1st VSPW Challenge Workshop, ICCV 2021.
+\end{tabular}
+
+\end{document}
