@@ -23,17 +23,50 @@ window.copyWechat = function copyWechat(event) {
   copyToClipboardOrFallback(WECHAT, 'WeChat ID copied to clipboard: ', 'wechat:' + WECHAT);
 };
 
-function updateLastModifiedDate() {
-  const updated = new Date(document.lastModified);
-  const target = document.getElementById('last-updated-value');
+function formatUpdatedDate(timestamp) {
+  const updated = new Date(timestamp);
 
-  if (target && !Number.isNaN(updated.getTime())) {
-    target.textContent = new Intl.DateTimeFormat('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    }).format(updated);
+  if (Number.isNaN(updated.getTime())) {
+    return null;
   }
+
+  return new Intl.DateTimeFormat('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  }).format(updated);
+}
+
+function setLastUpdated(timestamp) {
+  const target = document.getElementById('last-updated-value');
+  const formattedDate = formatUpdatedDate(timestamp);
+
+  if (target && formattedDate) {
+    target.textContent = formattedDate;
+    target.dateTime = new Date(timestamp).toISOString();
+  }
+}
+
+function updateLastModifiedDate() {
+  const commitsApiUrl = 'https://api.github.com/repos/wanghao9610/wanghao9610.github.io/commits?path=index.html&per_page=1';
+
+  setLastUpdated(document.lastModified);
+
+  fetch(commitsApiUrl)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Unable to fetch latest commit');
+      }
+
+      return response.json();
+    })
+    .then((commits) => {
+      const lastCommitDate = commits[0] && commits[0].commit && commits[0].commit.committer.date;
+      setLastUpdated(lastCommitDate);
+    })
+    .catch(() => {
+      setLastUpdated(document.lastModified);
+    });
 }
 
 function prepareExternalLinks() {
