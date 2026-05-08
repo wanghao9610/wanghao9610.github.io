@@ -105,6 +105,24 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+.skip-link {
+  position: absolute;
+  top: 12px;
+  left: 16px;
+  z-index: 100;
+  padding: 8px 12px;
+  border-radius: 999px;
+  color: #ffffff;
+  background: #111827;
+  font-weight: 700;
+  transform: translateY(-160%);
+}
+
+.skip-link:focus {
+  color: #ffffff;
+  transform: translateY(0);
+}
+
 body,
 td,
 th,
@@ -158,7 +176,7 @@ a:hover .papertitle {
   font-size: 36px;
   font-weight: 700;
   color: var(--color-heading);
-  letter-spacing: -.02em;
+  letter-spacing: 0;
 }
 
 .one {
@@ -236,6 +254,10 @@ a:hover .papertitle {
 
 .career-callout em {
   font-style: italic;
+}
+
+.research-summary {
+  color: #475569;
 }
 
 .hero-photo {
@@ -1055,6 +1077,7 @@ a:hover .papertitle {
   }
 
   .page-nav,
+  .skip-link,
   .visitors-section,
   .site-counter,
   .contact-links {

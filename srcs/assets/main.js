@@ -20,7 +20,7 @@ window.copyEmail = function copyEmail(event) {
 
 window.copyWechat = function copyWechat(event) {
   event.preventDefault();
-  copyToClipboardOrFallback(WECHAT, 'WeChat ID copied to clipboard: ', 'wechat:' + WECHAT);
+  copyToClipboardOrFallback(WECHAT, 'WeChat ID copied to clipboard: ', 'wechat://' + WECHAT);
 };
 
 function formatUpdatedDate(timestamp) {
