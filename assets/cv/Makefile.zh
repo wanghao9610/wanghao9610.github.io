@@ -1,6 +1,5 @@
-TEX := haowang_cv_zh.tex
-PDF := haowang_cv_zh.pdf
-PUBLISHED_PDF := ../haowang_cv_zh.pdf
+TEX := hao-wang-cv-zh.tex
+PDF := hao-wang-cv-zh.pdf
 
 .PHONY: all publish clean
 
@@ -8,7 +7,6 @@ all:
 	latexmk -xelatex -interaction=nonstopmode -halt-on-error $(TEX)
 
 publish: all
-	cp $(PDF) $(PUBLISHED_PDF)
 
 clean:
 	latexmk -c -xelatex $(TEX)
