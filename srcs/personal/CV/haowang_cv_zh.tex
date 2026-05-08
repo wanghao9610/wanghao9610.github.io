@@ -1,0 +1,213 @@
+\documentclass[UTF8,10pt,letterpaper,fontset=fandol]{ctexart}
+
+\usepackage[margin=0.58in]{geometry}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage{array}
+\usepackage{ragged2e}
+\usepackage{microtype}
+\usepackage{needspace}
+
+\definecolor{ink}{HTML}{000000}
+\definecolor{muted}{HTML}{000000}
+\definecolor{accentdark}{HTML}{000000}
+\definecolor{rule}{HTML}{E5E7EB}
+
+\hypersetup{
+  colorlinks=true,
+  urlcolor=ink,
+  linkcolor=ink
+}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlist[itemize]{leftmargin=1.15em,itemsep=1.8pt,topsep=2pt,parsep=0pt,partopsep=0pt}
+\renewcommand{\arraystretch}{1.06}
+
+\titleformat{\section}
+  {\large\bfseries\color{ink}}
+  {}
+  {0pt}
+  {\color{ink}}
+\titlespacing*{\section}{0pt}{11pt}{5.2pt}
+
+\newcommand{\datebadge}[1]{%
+  \begingroup
+  \textcolor{muted}{\footnotesize\bfseries #1}%
+  \endgroup
+}
+
+\newcommand{\cvitem}[4]{%
+  \Needspace{7\baselineskip}
+  \vspace{3pt}
+  \begin{tabularx}{\textwidth}{@{}>{\RaggedRight\arraybackslash}X>{\RaggedLeft\arraybackslash}p{0.23\textwidth}@{}}
+    \textbf{\color{ink}#1} & \datebadge{#2}
+  \end{tabularx}
+  \vspace{0pt}
+  {\small\color{muted}#3}\par
+  \vspace{0.6pt}
+  #4
+}
+
+\newcommand{\publication}[5]{%
+  \Needspace{5\baselineskip}
+  \vspace{2pt}
+  \begin{tabularx}{\textwidth}{@{}>{\RaggedRight\arraybackslash}X>{\RaggedLeft\arraybackslash}p{0.18\textwidth}@{}}
+    \textbf{\href{#1}{\color{ink}#2}} & \datebadge{#3}
+  \end{tabularx}
+  {\small #4}\par
+  \vspace{1pt}
+  {\small\color{muted}#5}\par
+  \vspace{5pt}
+}
+
+\begin{document}
+\fontsize{9.78}{11.75}\selectfont
+
+\begin{minipage}{\textwidth}
+    \vspace{4pt}
+    \centering
+    {\Huge\bfseries\color{ink} 王豪}\par
+    \vspace{3pt}
+    {\large\color{accentdark} 计算机视觉、多模态基础模型与智能体方向博士研究生}\par
+    \vspace{5pt}
+    {\small
+      电子邮箱：\href{mailto:wanghao9610@gmail.com}{wanghao9610@gmail.com}
+      \quad\textbar\quad
+      个人主页：\href{https://wanghao9610.github.io/}{wanghao9610.github.io}
+      \quad\textbar\quad
+      微信：wangh9610
+    }\par
+    \vspace{5pt}
+    {\color{rule}\rule{\linewidth}{0.5pt}}\par
+    \vspace{4pt}
+    \noindent
+    \begin{minipage}[t]{0.62\textwidth}
+      \RaggedRight\small 中山大学 HCP 实验室 \& 鹏城实验室
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.34\textwidth}
+      \RaggedLeft\small 预计毕业时间：2026 年 12 月
+    \end{minipage}\par
+    \vspace{1pt}
+    {\small\RaggedRight 寻求工业界研究岗位与科研合作机会\par}
+    \vspace{1pt}
+\end{minipage}
+
+\section{个人简介}
+博士研究生，研究方向聚焦开放场景视觉感知、多模态基础模型与智能体模型。一作工作包括 X2SAM、X-SAM（AAAI 2026）、OV-DINO 与 TMANet（ICIP 2021），覆盖图像/视频统一分割、开放词汇检测与时序一致的像素级理解。目前主要关注如何将基础模型与可靠的密集感知能力连接起来，服务于实际视觉应用。
+
+\section{研究亮点}
+  \begin{itemize}
+    \item 建立以第一作者为主的开放场景感知研究线，覆盖视频语义分割、开放词汇检测与多模态任意分割。
+    \item 构建同时支持自然语言指令和视觉提示的多模态分割框架，连接高层语义推理与密集掩码预测。
+    \item 探索带记忆机制的统一图像/视频分割方法，实现跨帧时序一致的对象级和像素级理解。
+    \item 多项代表性工作发布项目主页与代码，重视可复现和开放共享的研究实践。
+  \end{itemize}
+
+\section{一作论文}
+\publication
+  {https://wanghao9610.github.io/X2SAM/}
+  {X2SAM: Any Segmentation in Images and Videos}
+  {arXiv, 2026}
+  {\textbf{Hao Wang}, Limeng Qiao, Chi Zhang, Guanglu Wan, Lin Ma, Xiangyuan Lan, Xiaodan Liang}
+  {面向图像与视频的统一分割多模态大模型，支持对话式指令、视觉提示和时序一致的掩码记忆。该工作将任意分割能力从静态图像扩展到视频，同时保持密集像素级响应。 \href{https://arxiv.org/abs/2605.00891}{论文} \textbar{} \href{https://github.com/wanghao9610/X2SAM}{代码}}
+
+\publication
+  {https://wanghao9610.github.io/X-SAM/}
+  {X-SAM: From Segment Anything to Any Segmentation}
+  {AAAI, 2026}
+  {\textbf{Hao Wang}, Limeng Qiao, Zequn Jie, Zhijian Huang, Chengjian Feng, Qingfang Zheng, Lin Ma, Xiangyuan Lan, Xiaodan Liang}
+  {统一的多模态大模型框架，将 Segment Anything 的能力扩展到任意分割与像素级感知理解。支持通过多模态输入和指令交互实现灵活分割。 \href{https://arxiv.org/abs/2508.04655}{论文} \textbar{} \href{https://github.com/wanghao9610/X-SAM}{代码}}
+
+\publication
+  {https://wanghao9610.github.io/OV-DINO/}
+  {OV-DINO: Unified Open-Vocabulary Detection with Language-Aware Selective Fusion}
+  {arXiv, 2024}
+  {\textbf{Hao Wang}, Pengzhen Ren, Zequn Jie, Xiao Dong, Chengjian Feng, Yinlong Qian, Lin Ma, Dongmei Jiang, Yaowei Wang, Xiangyuan Lan, Xiaodan Liang}
+  {在多源大规模数据上预训练的统一开放词汇检测器，提出语言感知的选择性融合机制。该方法通过对齐视觉检测与语言语义提升类别泛化能力。 \href{https://arxiv.org/abs/2407.07844}{论文} \textbar{} \href{https://github.com/wanghao9610/OV-DINO}{代码}}
+
+\publication
+  {https://wanghao9610.github.io/TMANet/}
+  {TMANet: Temporal Memory Attention for Video Semantic Segmentation}
+  {ICIP, 2021}
+  {\textbf{Hao Wang}, Weining Wang, Jing Liu}
+  {面向长程视频语义分割的时序记忆注意力方法，无需光流预测即可建模跨帧上下文。 \href{https://arxiv.org/abs/2102.08643}{论文} \textbar{} \href{https://github.com/wanghao9610/TMANet}{代码}}
+
+\newpage
+\section{研究经历}
+\cvitem
+  {美团 M17-MM}
+  {2025.01 -- 至今}
+  {研究实习生}
+  {\begin{itemize}
+    \item 研发 X2SAM：面向图像和视频的统一任意分割多模态大模型，支持对话式指令和视觉提示。
+    \item 研究掩码记忆机制，提升视频分割和交互式感知中的对象级一致性。
+  \end{itemize}}
+
+\cvitem
+  {美团视觉智能部}
+  {2022.07 -- 2025.01}
+  {研究实习生}
+  {\begin{itemize}
+    \item 参与研发 OV-DINO 与 X-SAM，推进开放词汇识别和可提示分割能力。
+    \item 研究语言感知融合和多模态监督，用于可扩展视觉识别与分割。
+  \end{itemize}}
+
+\cvitem
+  {早期应用研究实习}
+  {2019.09 -- 2021.08}
+  {腾讯 AI 平台部；华为照片处理部}
+  {\begin{itemize}
+    \item 从事 AI 平台相关场景与计算机视觉应用项目研究。
+  \end{itemize}}
+
+\section{教育经历}
+\cvitem
+  {中山大学 \& 鹏城实验室}
+  {2022.09 -- 至今}
+  {博士研究生，智能工程学院}
+  {\begin{itemize}
+    \item 指导老师为梁小丹教授、蓝湘源副教授。
+    \item 研究方向为多模态基础模型、开放场景视觉理解、图像/视频分割与多模态智能体。
+    \item 预计 2026 年 12 月毕业，正在积极寻求工业界研究岗位。
+  \end{itemize}}
+
+\cvitem
+  {中国科学院大学 \& 中国科学院自动化研究所}
+  {2019.09 -- 2022.06}
+  {硕士研究生，人工智能学院}
+  {\begin{itemize}
+    \item 导师：刘静教授。
+  \end{itemize}}
+
+\cvitem
+  {北京交通大学}
+  {2015.09 -- 2019.06}
+  {本科生，电子信息工程学院}
+  {}
+
+\section{合作论文}
+\publication
+  {https://ieeexplore.ieee.org/abstract/document/10096063}
+  {WL-MSR: Watch and Listen for Multimodal Subtitle Recognition}
+  {ICASSP, 2023}
+  {Jiawei Liu, \textbf{Hao Wang}, Weining Wang, Xingjian He, Jing Liu}
+  {基于 Transformer 的多模态字幕识别方法，融合 OCR 与 ASR 信息，并使用掩码/裁剪策略和多层级身份嵌入。}
+
+\section{学术服务}
+\begin{tabular}{@{}>{\bfseries}l@{\hspace{0.12\textwidth}}l@{}}
+会议审稿人 & AAAI 2026, ICCV 2023, ECCV 2024 \\
+期刊审稿人 & Proceedings of the IEEE
+\end{tabular}
+
+\section{获奖经历}
+\begin{tabular}{@{}>{\bfseries}l@{\hspace{0.13\textwidth}}l@{}}
+2021.09 & ICCV 2021 第 1 届 VSPW Challenge Workshop 第一名。
+\end{tabular}
+
+\end{document}
