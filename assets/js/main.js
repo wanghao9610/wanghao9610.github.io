@@ -1,10 +1,41 @@
 const EMAIL = 'wanghao9610@gmail.com';
 const WECHAT = 'wangh9610';
+const GITHUB_USER = 'wanghao9610';
+
+/* --------------------------------------------------------------------------
+   Toast + clipboard
+   -------------------------------------------------------------------------- */
+let toastTimer = null;
+
+function showToast(message, detail) {
+  const toast = document.getElementById('toast');
+  if (!toast) {
+    return;
+  }
+
+  toast.innerHTML = '';
+  const icon = document.createElement('i');
+  icon.className = 'fas fa-check';
+  const text = document.createElement('span');
+  text.textContent = message;
+  toast.appendChild(icon);
+  toast.appendChild(text);
+
+  if (detail) {
+    const code = document.createElement('code');
+    code.textContent = detail;
+    toast.appendChild(code);
+  }
+
+  toast.classList.add('is-visible');
+  window.clearTimeout(toastTimer);
+  toastTimer = window.setTimeout(() => toast.classList.remove('is-visible'), 2600);
+}
 
 function copyToClipboardOrFallback(value, successMessage, fallbackHref) {
   if (navigator.clipboard && navigator.clipboard.writeText) {
     navigator.clipboard.writeText(value).then(() => {
-      alert(successMessage + value);
+      showToast(successMessage, value);
     }).catch(() => {
       window.location.href = fallbackHref;
     });
@@ -13,16 +44,59 @@ function copyToClipboardOrFallback(value, successMessage, fallbackHref) {
   }
 }
 
-window.copyEmail = function copyEmail(event) {
-  event.preventDefault();
-  copyToClipboardOrFallback(EMAIL, 'E-mail address copied to clipboard: ', 'mailto:' + EMAIL);
-};
+function initializeCopyActions() {
+  document.querySelectorAll('[data-copy]').forEach((element) => {
+    element.addEventListener('click', (event) => {
+      event.preventDefault();
+      const kind = element.getAttribute('data-copy');
+      if (kind === 'email') {
+        copyToClipboardOrFallback(EMAIL, 'Email copied', 'mailto:' + EMAIL);
+      } else if (kind === 'wechat') {
+        copyToClipboardOrFallback(WECHAT, 'WeChat ID copied', 'wechat://' + WECHAT);
+      }
+    });
+  });
+}
 
-window.copyWechat = function copyWechat(event) {
-  event.preventDefault();
-  copyToClipboardOrFallback(WECHAT, 'WeChat ID copied to clipboard: ', 'wechat://' + WECHAT);
-};
+/* --------------------------------------------------------------------------
+   Theme
+   -------------------------------------------------------------------------- */
+function initializeTheme() {
+  const toggle = document.getElementById('theme-toggle');
+  const root = document.documentElement;
 
+  if (!toggle) {
+    return;
+  }
+
+  toggle.addEventListener('click', () => {
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try {
+      localStorage.setItem('theme', next);
+    } catch (error) {
+      /* ignore */
+    }
+  });
+
+  if (window.matchMedia) {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (event) => {
+      let saved = null;
+      try {
+        saved = localStorage.getItem('theme');
+      } catch (error) {
+        /* ignore */
+      }
+      if (!saved) {
+        root.setAttribute('data-theme', event.matches ? 'dark' : 'light');
+      }
+    });
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Last updated
+   -------------------------------------------------------------------------- */
 function formatUpdatedDate(timestamp) {
   const updated = new Date(timestamp);
 
@@ -48,16 +122,20 @@ function setLastUpdated(timestamp) {
 }
 
 function updateLastModifiedDate() {
-  const commitsApiUrl = 'https://api.github.com/repos/wanghao9610/wanghao9610.github.io/commits?path=index.html&per_page=1';
+  const commitsApiUrl = 'https://api.github.com/repos/' + GITHUB_USER + '/' + GITHUB_USER + '.github.io/commits?path=index.html&per_page=1';
 
   setLastUpdated(document.lastModified);
+
+  const year = document.getElementById('footer-year');
+  if (year) {
+    year.textContent = String(new Date().getFullYear());
+  }
 
   fetch(commitsApiUrl)
     .then((response) => {
       if (!response.ok) {
         throw new Error('Unable to fetch latest commit');
       }
-
       return response.json();
     })
     .then((commits) => {
@@ -69,6 +147,102 @@ function updateLastModifiedDate() {
     });
 }
 
+/* --------------------------------------------------------------------------
+   GitHub stats (stars / forks / followers), with static fallbacks in the HTML
+   -------------------------------------------------------------------------- */
+function formatCount(value) {
+  if (value >= 1000) {
+    return (value / 1000).toFixed(1).replace(/\.0$/, '') + 'k';
+  }
+  return String(value);
+}
+
+function updateGitHubStats() {
+  const repoTargets = document.querySelectorAll('[data-repo]');
+  const statTargets = document.querySelectorAll('[data-gh]');
+
+  if (repoTargets.length === 0 && statTargets.length === 0) {
+    return;
+  }
+
+  const cacheKey = 'gh-stats-v1';
+  const cacheTtl = 1000 * 60 * 60 * 6;
+
+  function apply(data) {
+    repoTargets.forEach((element) => {
+      const repo = data.repos[element.getAttribute('data-repo')];
+      if (repo) {
+        element.textContent = formatCount(repo.stars);
+      }
+    });
+
+    document.querySelectorAll('[data-repo-forks]').forEach((element) => {
+      const repo = data.repos[element.getAttribute('data-repo-forks')];
+      if (repo) {
+        element.textContent = formatCount(repo.forks);
+      }
+    });
+
+    statTargets.forEach((element) => {
+      const key = element.getAttribute('data-gh');
+      if (data.totals[key] !== undefined) {
+        element.textContent = formatCount(data.totals[key]);
+      }
+    });
+  }
+
+  try {
+    const cached = JSON.parse(localStorage.getItem(cacheKey) || 'null');
+    if (cached && Date.now() - cached.time < cacheTtl) {
+      apply(cached.data);
+      return;
+    }
+  } catch (error) {
+    /* ignore */
+  }
+
+  Promise.all([
+    fetch('https://api.github.com/users/' + GITHUB_USER).then((r) => (r.ok ? r.json() : null)),
+    fetch('https://api.github.com/users/' + GITHUB_USER + '/repos?per_page=100').then((r) => (r.ok ? r.json() : null))
+  ]).then(([user, repos]) => {
+    if (!user || !Array.isArray(repos)) {
+      return;
+    }
+
+    const data = { repos: {}, totals: {} };
+    let stars = 0;
+    let forks = 0;
+
+    repos.forEach((repo) => {
+      data.repos[repo.name] = { stars: repo.stargazers_count, forks: repo.forks_count };
+      if (!repo.fork) {
+        stars += repo.stargazers_count;
+        forks += repo.forks_count;
+      }
+    });
+
+    data.totals = {
+      stars: stars,
+      forks: forks,
+      followers: user.followers,
+      repos: user.public_repos
+    };
+
+    apply(data);
+
+    try {
+      localStorage.setItem(cacheKey, JSON.stringify({ time: Date.now(), data: data }));
+    } catch (error) {
+      /* ignore */
+    }
+  }).catch(() => {
+    /* keep static fallbacks */
+  });
+}
+
+/* --------------------------------------------------------------------------
+   Links, navigation, reveal
+   -------------------------------------------------------------------------- */
 function prepareExternalLinks() {
   document.querySelectorAll('a[href]').forEach((link) => {
     const href = link.getAttribute('href');
@@ -86,7 +260,8 @@ function prepareExternalLinks() {
 }
 
 function initializeSectionNavigation() {
-  const navLinks = Array.from(document.querySelectorAll('.page-nav a[href^="#"]'));
+  const nav = document.getElementById('site-nav');
+  const navLinks = Array.from(document.querySelectorAll('.nav-links a[href^="#"]'));
   const sections = navLinks
     .map((link) => document.querySelector(link.getAttribute('href')))
     .filter(Boolean);
@@ -97,9 +272,14 @@ function initializeSectionNavigation() {
     });
   }
 
-  if (sections.length > 0) {
-    setActiveNav(sections[0].id);
+  function updateNavShadow() {
+    if (nav) {
+      nav.classList.toggle('is-scrolled', window.scrollY > 8);
+    }
   }
+
+  updateNavShadow();
+  window.addEventListener('scroll', updateNavShadow, { passive: true });
 
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver((entries) => {
@@ -109,7 +289,7 @@ function initializeSectionNavigation() {
         }
       });
     }, {
-      rootMargin: '-35% 0px -55% 0px',
+      rootMargin: '-30% 0px -60% 0px',
       threshold: 0
     });
 
@@ -130,6 +310,29 @@ function initializeSectionNavigation() {
   }
 }
 
+function initializeReveal() {
+  const elements = Array.from(document.querySelectorAll('.reveal'));
+
+  if (!('IntersectionObserver' in window)) {
+    elements.forEach((element) => element.classList.add('is-visible'));
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+
+  elements.forEach((element) => observer.observe(element));
+}
+
+/* --------------------------------------------------------------------------
+   Visitors map (lazy)
+   -------------------------------------------------------------------------- */
 function initializeMapMyVisitors() {
   const container = document.getElementById('mapmyvisitors-container');
 
@@ -147,7 +350,6 @@ function initializeMapMyVisitors() {
       if (node.nodeType === Node.TEXT_NODE) {
         return node.textContent.trim().length > 0;
       }
-
       return node.nodeType === Node.ELEMENT_NODE && node.tagName.toLowerCase() !== 'script';
     });
   }
@@ -157,15 +359,12 @@ function initializeMapMyVisitors() {
       window.clearTimeout(fallbackTimer);
       fallbackTimer = null;
     }
-
     if (observer) {
       observer.disconnect();
     }
-
     if (renderObserver) {
       renderObserver.disconnect();
     }
-
     if (section) {
       section.hidden = true;
     }
@@ -177,12 +376,10 @@ function initializeMapMyVisitors() {
         window.clearTimeout(fallbackTimer);
         fallbackTimer = null;
       }
-
       if (renderObserver) {
         renderObserver.disconnect();
         renderObserver = null;
       }
-
       return;
     }
 
@@ -233,9 +430,7 @@ function initializeMapMyVisitors() {
           observer.disconnect();
         }
       });
-    }, {
-      rootMargin: '100px'
-    });
+    }, { rootMargin: '100px' });
 
     observer.observe(container);
   } else {
@@ -243,13 +438,15 @@ function initializeMapMyVisitors() {
   }
 }
 
+/* --------------------------------------------------------------------------
+   Paper preview hover (touch / keyboard friendly)
+   -------------------------------------------------------------------------- */
 function initializePaperPreviewHover() {
-  document.querySelectorAll('.paper-row').forEach((row) => {
-    const previewImage = row.querySelector('.two img');
+  document.querySelectorAll('.paper').forEach((row) => {
+    const previewImage = row.querySelector('.thumb-hover');
 
     if (previewImage) {
       previewImage.loading = 'eager';
-
       const preloadImage = new Image();
       preloadImage.src = previewImage.currentSrc || previewImage.src;
     }
@@ -269,9 +466,13 @@ function initializePaperPreviewHover() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  initializeTheme();
+  initializeCopyActions();
   updateLastModifiedDate();
+  updateGitHubStats();
   prepareExternalLinks();
   initializeSectionNavigation();
+  initializeReveal();
   initializePaperPreviewHover();
   initializeMapMyVisitors();
 });
