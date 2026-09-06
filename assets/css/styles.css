@@ -749,8 +749,8 @@ h3 {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  background: var(--surface-2);
+  /* Landscape previews are stretched to the square rather than letterboxed or cropped */
+  object-fit: fill;
   transition: opacity .25s ease, transform .3s ease;
 }
 
@@ -1481,8 +1481,7 @@ h3 {
 
   .paper-thumb {
     width: 100%;
-    max-width: 260px;
-    aspect-ratio: 16 / 10;
+    max-width: 240px;
   }
 
   .timeline-item {
