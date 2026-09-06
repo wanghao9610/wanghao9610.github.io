@@ -520,6 +520,10 @@ h3 {
   color: var(--accent);
 }
 
+.hero-photo-caption .caption-name {
+  display: none;
+}
+
 /* Callout */
 .callout {
   position: relative;
@@ -1398,12 +1402,43 @@ h3 {
 
   .hero-grid {
     grid-template-columns: 1fr;
-    gap: 26px;
+    gap: 22px;
+  }
+
+  /* On phones the portrait leads the profile instead of trailing the buttons */
+  .hero-side {
+    order: -1;
+    display: flex;
+    align-items: center;
+    gap: 16px;
   }
 
   .hero-photo {
-    width: 170px;
+    width: 112px;
+    flex: 0 0 auto;
+    padding: 5px;
+    border-radius: 22px;
     transform: none;
+  }
+
+  .hero-photo img {
+    border-radius: 17px;
+  }
+
+  .hero-photo-caption {
+    margin-top: 0;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    font-size: 13px;
+  }
+
+  .hero-photo-caption .caption-name {
+    display: inline;
+    font-family: var(--font-serif);
+    font-size: 17px;
+    color: var(--ink);
   }
 
   .hero h1 {

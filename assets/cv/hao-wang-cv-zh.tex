@@ -1,6 +1,18 @@
-\documentclass[UTF8,10pt,letterpaper,fontset=fandol]{ctexart}
+% 王豪 — 中文简历
+% 黑白打印版；字体排版与 https://wanghao9610.github.io/ 保持一致（衬线标题）。
+% 编译：make -f Makefile.zh   (latexmk -xelatex)
 
-\usepackage[margin=0.58in]{geometry}
+\documentclass[UTF8,10pt,letterpaper,fontset=fandol,linespread=1.1]{ctexart}
+
+\usepackage[margin=0.6in,top=0.5in,bottom=0.5in]{geometry}
+\setmainfont{SourceSerifPro-Regular.otf}[
+  BoldFont=SourceSerifPro-Semibold.otf,
+  ItalicFont=SourceSerifPro-RegularIt.otf,
+  BoldItalicFont=SourceSerifPro-SemiboldIt.otf]
+\setsansfont{SourceSansPro-Regular.otf}[
+  BoldFont=SourceSansPro-Semibold.otf,
+  ItalicFont=SourceSansPro-RegularIt.otf,
+  BoldItalicFont=SourceSansPro-SemiboldIt.otf]
 \usepackage{xcolor}
 \usepackage{hyperref}
 \usepackage{enumitem}
@@ -10,180 +22,226 @@
 \usepackage{ragged2e}
 \usepackage{microtype}
 \usepackage{needspace}
+\usepackage{fontawesome5}
+\usepackage{etoolbox}
 
+% ---- 配色（与网站一致） ------------------------------------------------------
 \definecolor{ink}{HTML}{000000}
-\definecolor{muted}{HTML}{000000}
-\definecolor{accentdark}{HTML}{000000}
-\definecolor{rule}{HTML}{E5E7EB}
+\definecolor{text}{HTML}{000000}
+\definecolor{muted}{HTML}{3A3A3A}
+\definecolor{soft}{HTML}{555555}
+\definecolor{accent}{HTML}{000000}
+\definecolor{rule}{HTML}{BFBFBF}
 
 \hypersetup{
   colorlinks=true,
-  urlcolor=ink,
-  linkcolor=ink
+  urlcolor=accent,
+  linkcolor=accent,
+  pdftitle={王豪 - 简历},
+  pdfauthor={王豪}
 }
 
 \pagestyle{empty}
+\color{text}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0pt}
-\setlist[itemize]{leftmargin=1.15em,itemsep=1.8pt,topsep=2pt,parsep=0pt,partopsep=0pt}
+\setlist[itemize]{leftmargin=1.15em,itemsep=1.4pt,topsep=2pt,parsep=0pt,partopsep=0pt,label=\textcolor{accent}{\scriptsize\raisebox{.25ex}{$\bullet$}}}
 \renewcommand{\arraystretch}{1.06}
+\setlength{\emergencystretch}{1.5em}
 
 \titleformat{\section}
-  {\large\bfseries\color{ink}}
+  {\rmfamily\Large\bfseries\color{ink}}
   {}
   {0pt}
-  {\color{ink}}
-\titlespacing*{\section}{0pt}{11pt}{5.2pt}
+  {}
+  [{\vspace{-3pt}\color{rule}\titlerule[0.6pt]}]
+\titlespacing*{\section}{0pt}{9pt}{5pt}
 
-\newcommand{\datebadge}[1]{%
-  \begingroup
-  \textcolor{muted}{\footnotesize\bfseries #1}%
-  \endgroup
-}
+\newcommand{\datebadge}[1]{\textcolor{accent}{\footnotesize\bfseries #1}}
+\newcommand{\metaline}[1]{\textcolor{muted}{\small #1}}
+\newcommand{\venue}[1]{\textcolor{accent}{\footnotesize\bfseries #1}}
+\newcommand{\stars}[1]{\ifstrempty{#1}{}{\hfill\textcolor{soft}{\footnotesize\faStar\,#1}}}
+\newcommand{\sep}{{\color{rule}\;\textbar\;}}
 
 \newcommand{\cvitem}[4]{%
-  \Needspace{7\baselineskip}
+  \Needspace{6\baselineskip}
   \vspace{3pt}
-  \begin{tabularx}{\textwidth}{@{}>{\RaggedRight\arraybackslash}X>{\RaggedLeft\arraybackslash}p{0.23\textwidth}@{}}
-    \textbf{\color{ink}#1} & \datebadge{#2}
+  \begin{tabularx}{\textwidth}{@{}>{\RaggedRight\arraybackslash}X>{\RaggedLeft\arraybackslash}p{0.25\textwidth}@{}}
+    \textbf{\textcolor{ink}{#1}} & \datebadge{#2}
   \end{tabularx}
-  \vspace{0pt}
-  {\small\color{muted}#3}\par
-  \vspace{0.6pt}
+  \vspace{-1pt}
+  \metaline{#3}\par
+  \vspace{1pt}
   #4
 }
 
 \newcommand{\publication}[5]{%
   \Needspace{5\baselineskip}
   \vspace{2pt}
-  \begin{tabularx}{\textwidth}{@{}>{\RaggedRight\arraybackslash}X>{\RaggedLeft\arraybackslash}p{0.18\textwidth}@{}}
-    \textbf{\href{#1}{\color{ink}#2}} & \datebadge{#3}
+  \begin{tabularx}{\textwidth}{@{}>{\RaggedRight\arraybackslash}X>{\RaggedLeft\arraybackslash}p{0.16\textwidth}@{}}
+    \textbf{\href{#1}{\textcolor{ink}{#2}}} & \venue{#3}
   \end{tabularx}
+  \vspace{-1pt}
   {\small #4}\par
   \vspace{1pt}
-  {\small\color{muted}#5}\par
-  \vspace{5pt}
+  \textcolor{muted}{\small #5}\par
+  \vspace{4.5pt}
+}
+
+\newcommand{\repo}[5]{%
+  \textbf{\href{#1}{\textcolor{ink}{#2}}}\ \venue{#3}\stars{#4}\par
+  \vspace{-1pt}
+  \textcolor{muted}{\small #5}\par
+  \vspace{3pt}
 }
 
 \begin{document}
-\fontsize{9.78}{11.75}\selectfont
 
+% ============================ 抬头 ==========================================
 \begin{minipage}{\textwidth}
-    \vspace{4pt}
-    \centering
-    {\Huge\bfseries\color{ink} 王豪}\par
-    \vspace{3pt}
-    {\large\color{accentdark} 计算机视觉、多模态基础模型与智能体方向博士研究生}\par
-    \vspace{5pt}
-    {\small
-      电子邮箱：\href{mailto:wanghao9610@gmail.com}{wanghao9610@gmail.com}
-      \quad\textbar\quad
-      个人主页：\href{https://wanghao9610.github.io/}{wanghao9610.github.io}
-      \quad\textbar\quad
-      微信：wangh9610
-    }\par
-    \vspace{5pt}
-    {\color{rule}\rule{\linewidth}{0.5pt}}\par
-    \vspace{4pt}
-    \noindent
-    \begin{minipage}[t]{0.62\textwidth}
-      \RaggedRight\small 中山大学 HCP 实验室 \& 鹏城实验室
-    \end{minipage}
-    \hfill
-    \begin{minipage}[t]{0.34\textwidth}
-      \RaggedLeft\small 预计毕业时间：2026 年 12 月
-    \end{minipage}\par
-    \vspace{1pt}
-    {\small\RaggedRight 寻求工业界研究岗位与科研合作机会\par}
-    \vspace{1pt}
+  \vspace{2pt}
+  \centering
+  {\rmfamily\fontsize{28}{32}\selectfont\bfseries\color{ink} 王豪\hspace{0.35em}%
+   {\fontsize{20}{24}\selectfont\mdseries\color{muted} Hao Wang}}\par
+  \vspace{5pt}
+  {\rmfamily\itshape\large\color{muted} Leave the world a little different.}\par
+  \vspace{4pt}
+  {\normalsize\color{accent} 博士研究生 · 开放场景视觉感知 · 多模态基础模型 · 智能体}\par
+  \vspace{7pt}
+  {\small\color{muted}
+    \faEnvelope\ \href{mailto:wanghao9610@gmail.com}{wanghao9610@gmail.com}
+    \sep
+    \faGlobe\ \href{https://wanghao9610.github.io/}{wanghao9610.github.io}
+    \sep
+    \faGithub\ \href{https://github.com/wanghao9610}{wanghao9610}
+    \sep
+    \faWeixin\ wangh9610
+    \sep
+    \faMapMarker*\ 深圳
+  }\par
+  \vspace{7pt}
+  {\color{ink}\rule{\linewidth}{0.8pt}}\par
+  \vspace{5pt}
+  \begin{minipage}[t]{0.62\textwidth}
+    \RaggedRight\small\color{muted} 中山大学 HCP 实验室 \& 鹏城实验室
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[t]{0.36\textwidth}
+    \RaggedLeft\small\color{muted} 预计毕业时间：\textbf{\color{accent}2026 年 12 月}
+  \end{minipage}\par
+  \vspace{1pt}
+  {\small\color{muted}\RaggedRight 寻求工业界研究岗位，同时欢迎科研合作。\par}
 \end{minipage}
 
+% ============================ 简介 ==========================================
 \section{个人简介}
-博士研究生，研究方向聚焦开放场景视觉感知、多模态基础模型与智能体模型。一作工作包括 X2SAM (ECCV 2026)、X-SAM（AAAI 2026）、OV-DINO 与 TMANet（ICIP 2021），覆盖图像/视频统一分割、开放词汇检测与时序一致的像素级理解。目前主要关注如何将基础模型与可靠的密集感知能力连接起来，服务于实际视觉应用。
+博士研究生，研究聚焦\textbf{开放场景计算机视觉}与\textbf{多模态大语言模型}，并持续探索\textbf{多模态智能体模型}。一作工作包括 X2SAM（ECCV 2026）、X-SAM（AAAI 2026）、OV-DINO 与 TMANet（ICIP 2021），覆盖图像/视频统一分割、开放词汇检测与时序一致的像素级理解。代表性工作均开源并配有项目主页（GitHub 累计 1.1k+ stars）。关注如何将基础模型与可靠的密集感知、智能体工作流结合，服务于实际视觉系统。
 
 \section{研究亮点}
-  \begin{itemize}
-    \item 建立以第一作者为主的开放场景感知研究线，覆盖视频语义分割、开放词汇检测与多模态任意分割。
-    \item 构建同时支持自然语言指令和视觉提示的多模态分割框架，连接高层语义推理与密集掩码预测。
-    \item 探索带记忆机制的统一图像/视频分割方法，实现跨帧时序一致的对象级和像素级理解。
-    \item 多项代表性工作发布项目主页与代码，重视可复现和开放共享的研究实践。
-  \end{itemize}
+\begin{itemize}
+  \item 建立以第一作者为主的开放场景感知研究线：从视频语义分割到开放词汇检测，再到多模态任意分割。
+  \item 构建同时支持自然语言指令与视觉提示的多模态分割大模型，连接高层语义推理与密集掩码预测。
+  \item 借助掩码记忆机制将任意分割从图像扩展到视频，实现跨帧时序一致的对象级与像素级理解。
+  \item 长期维护开源研究代码及面向智能体的研究工具链（STAR / STORY / STAGE），重视可复现与开放共享。
+\end{itemize}
 
+% ============================ 论文 ==========================================
 \section{一作论文}
 \publication
   {https://wanghao9610.github.io/X2SAM/}
   {X2SAM: Any Segmentation in Images and Videos}
-  {ECCV, 2026}
+  {ECCV 2026}
   {\textbf{Hao Wang}, Limeng Qiao, Chi Zhang, Guanglu Wan, Lin Ma, Xiangyuan Lan, Xiaodan Liang}
-  {面向图像与视频的统一分割多模态大模型，支持对话式指令、视觉提示和时序一致的掩码记忆。该工作将任意分割能力从静态图像扩展到视频，同时保持密集像素级响应。 \href{https://arxiv.org/abs/2605.00891}{论文} \textbar{} \href{https://github.com/wanghao9610/X2SAM}{代码}}
+  {面向图像与视频的统一分割多模态大模型，支持对话式指令与视觉提示，通过掩码记忆实现时序一致的像素级感知，将任意分割从静态图像扩展到视频。\href{https://wanghao9610.github.io/X2SAM/}{主页} \sep \href{https://arxiv.org/abs/2605.00891}{论文} \sep \href{https://github.com/wanghao9610/X2SAM}{代码}}
 
 \publication
   {https://wanghao9610.github.io/X-SAM/}
   {X-SAM: From Segment Anything to Any Segmentation}
-  {AAAI, 2026}
+  {AAAI 2026}
   {\textbf{Hao Wang}, Limeng Qiao, Zequn Jie, Zhijian Huang, Chengjian Feng, Qingfang Zheng, Lin Ma, Xiangyuan Lan, Xiaodan Liang}
-  {统一的多模态大模型框架，将 Segment Anything 的能力扩展到任意分割与像素级感知理解。支持通过多模态输入和指令交互实现灵活分割。 \href{https://arxiv.org/abs/2508.04655}{论文} \textbar{} \href{https://github.com/wanghao9610/X-SAM}{代码}}
+  {统一的多模态大模型框架，将 Segment Anything 的能力扩展到任意分割与像素级感知理解，支持指令驱动的交互式分割。\href{https://wanghao9610.github.io/X-SAM/}{主页} \sep \href{https://arxiv.org/abs/2508.04655}{论文} \sep \href{https://github.com/wanghao9610/X-SAM}{代码}}
 
 \publication
   {https://wanghao9610.github.io/OV-DINO/}
   {OV-DINO: Unified Open-Vocabulary Detection with Language-Aware Selective Fusion}
-  {arXiv, 2024}
+  {arXiv 2024}
   {\textbf{Hao Wang}, Pengzhen Ren, Zequn Jie, Xiao Dong, Chengjian Feng, Yinlong Qian, Lin Ma, Dongmei Jiang, Yaowei Wang, Xiangyuan Lan, Xiaodan Liang}
-  {在多源大规模数据上预训练的统一开放词汇检测器，提出语言感知的选择性融合机制。该方法通过对齐视觉检测与语言语义提升类别泛化能力。 \href{https://arxiv.org/abs/2407.07844}{论文} \textbar{} \href{https://github.com/wanghao9610/OV-DINO}{代码}}
+  {在多源大规模数据上预训练的统一开放词汇检测器，提出语言感知的选择性融合机制，通过视觉--语言对齐提升类别泛化能力。\href{https://wanghao9610.github.io/OV-DINO/}{主页} \sep \href{https://arxiv.org/abs/2407.07844}{论文} \sep \href{https://github.com/wanghao9610/OV-DINO}{代码}}
 
 \publication
-  {https://wanghao9610.github.io/TMANet/}
+  {https://arxiv.org/abs/2102.08643}
   {TMANet: Temporal Memory Attention for Video Semantic Segmentation}
-  {ICIP, 2021}
+  {ICIP 2021}
   {\textbf{Hao Wang}, Weining Wang, Jing Liu}
-  {面向长程视频语义分割的时序记忆注意力方法，无需光流预测即可建模跨帧上下文。 \href{https://arxiv.org/abs/2102.08643}{论文} \textbar{} \href{https://github.com/wanghao9610/TMANet}{代码}}
+  {面向长程视频语义分割的时序记忆注意力方法，无需光流预测即可建模跨帧关系。\href{https://arxiv.org/abs/2102.08643}{论文} \sep \href{https://github.com/wanghao9610/TMANet}{代码}}
 
-\newpage
+% ============================ 开源 ==========================================
+\Needspace*{16\baselineskip}
+\section{开源项目}
+\metaline{研究代码与工具均托管于 \href{https://github.com/wanghao9610}{GitHub}；star 数截至 2026 年 9 月。}\par
+\vspace{4pt}
+\begin{minipage}[t]{0.485\textwidth}
+  \repo{https://github.com/wanghao9610/OV-DINO}{OV-DINO}{arXiv 2024}{414}{语言感知选择性融合的统一开放词汇检测。}
+  \repo{https://github.com/wanghao9610/X-SAM}{X-SAM}{AAAI 2026}{391}{从 Segment Anything 到任意分割。}
+  \repo{https://github.com/wanghao9610/TMANet}{TMANet}{ICIP 2021}{128}{面向视频语义分割的时序记忆注意力。}
+  \repo{https://github.com/wanghao9610/X2SAM}{X2SAM}{ECCV 2026}{104}{单一多模态大模型实现图像与视频任意分割。}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.485\textwidth}
+  \repo{https://github.com/wanghao9610/STAR}{STAR}{Harness · WIP}{51}{Systematic Toolchain for AI Research：面向 AI 研究的智能体工具链，覆盖规划、执行与追踪。}
+  \repo{https://github.com/wanghao9610/STORY}{STORY \,/\, \href{https://github.com/wanghao9610/STAGE}{STAGE}}{Harness · WIP}{}{配套工具链：跨年度组织研究，以及写作、引导与编辑。}
+  \repo{https://omdsh-plugins.github.io/}{omdsh-plugins}{Collection}{}{Oh My DeepSeek Harness：DeepSeek Harness 插件精选集。}
+  \repo{https://github.com/wanghao9610/arXivTeX}{arXivTeX}{Template}{33}{arXiv / 会议论文模板。另有 \href{https://github.com/wanghao9610/Claude-Model-Proxy}{Claude Model Proxy}、\href{https://github.com/wanghao9610/Codex-Remote-Connector}{Codex Remote Connector}。}
+\end{minipage}
+
+% ============================ 经历 ==========================================
 \section{研究经历}
 \cvitem
-  {美团 M17-MM}
+  {美团 · M17-MM}
   {2025.01 -- 至今}
   {研究实习生}
   {\begin{itemize}
-    \item 研发 X2SAM：面向图像和视频的统一任意分割多模态大模型，支持对话式指令和视觉提示。
-    \item 研究掩码记忆机制，提升视频分割和交互式感知中的对象级一致性。
+    \item 主导 X2SAM：面向图像与视频的统一任意分割多模态大模型，支持对话式指令与视觉提示。
+    \item 设计掩码记忆机制，提升视频分割与交互式感知中的对象级时序一致性；负责训练、评测与开源发布。
   \end{itemize}}
 
 \cvitem
-  {美团视觉智能部}
+  {美团 · 视觉智能部}
   {2022.07 -- 2025.01}
   {研究实习生}
   {\begin{itemize}
-    \item 参与研发 OV-DINO 与 X-SAM，推进开放词汇识别和任意分割能力。
-    \item 研究语言感知融合和多模态监督，用于可扩展视觉识别与分割。
+    \item 主导 OV-DINO 与 X-SAM，推进开放词汇识别与任意分割能力。
+    \item 研究语言感知融合与多模态监督，用于可扩展的视觉识别与分割。
   \end{itemize}}
 
 \cvitem
-  {早期应用研究实习}
-  {2019.09 -- 2021.08}
-  {腾讯 AI 平台部；华为照片处理部}
-  {\begin{itemize}
-    \item 从事 AI 平台相关场景与计算机视觉应用项目研究。
-  \end{itemize}}
+  {腾讯 · AI 平台部}
+  {2021.05 -- 2021.08}
+  {应用研究实习生}
+  {}
 
+\cvitem
+  {华为 · 照片处理部}
+  {2019.09 -- 2020.07}
+  {应用项目实习生}
+  {}
+
+% ============================ 教育 ==========================================
 \section{教育经历}
 \cvitem
   {中山大学 \& 鹏城实验室}
   {2022.09 -- 至今}
   {博士研究生，智能工程学院}
   {\begin{itemize}
-    \item 指导老师为梁小丹教授、蓝湘源副教授。
-    \item 研究方向为多模态基础模型、开放场景视觉理解、图像/视频分割与多模态智能体。
-    \item 预计 2026 年 12 月毕业，正在积极寻求工业界研究岗位。
+    \item 导师：梁小丹教授、蓝湘源副教授。
+    \item 研究方向：多模态基础模型、开放场景视觉理解、图像/视频分割与多模态智能体；预计 2026 年 12 月毕业。
   \end{itemize}}
 
 \cvitem
   {中国科学院大学 \& 中国科学院自动化研究所}
   {2019.09 -- 2022.06}
-  {硕士研究生，人工智能学院}
-  {\begin{itemize}
-    \item 导师：刘静教授。
-  \end{itemize}}
+  {硕士研究生，人工智能学院；导师：刘静教授}
+  {}
 
 \cvitem
   {北京交通大学}
@@ -191,23 +249,21 @@
   {本科生，电子信息工程学院}
   {}
 
+% ============================ 其他 ==========================================
 \section{合作论文}
 \publication
   {https://ieeexplore.ieee.org/abstract/document/10096063}
   {WL-MSR: Watch and Listen for Multimodal Subtitle Recognition}
-  {ICASSP, 2023}
+  {ICASSP 2023}
   {Jiawei Liu, \textbf{Hao Wang}, Weining Wang, Xingjian He, Jing Liu}
   {基于 Transformer 的多模态字幕识别方法，融合 OCR 与 ASR 信息，并使用掩码/裁剪策略和多层级身份嵌入。}
 
-\section{学术服务}
-\begin{tabular}{@{}>{\bfseries}l@{\hspace{0.12\textwidth}}l@{}}
-会议审稿人 & AAAI 2026, ICCV 2023, ECCV 2024 \\
-期刊审稿人 & Proceedings of the IEEE
-\end{tabular}
-
-\section{获奖经历}
-\begin{tabular}{@{}>{\bfseries}l@{\hspace{0.13\textwidth}}l@{}}
-2021.09 & ICCV 2021 第 1 届 VSPW Challenge Workshop 第一名。
+\Needspace*{5\baselineskip}
+\section{学术服务与获奖}
+\begin{tabular}{@{}>{\bfseries\color{ink}}l@{\hspace{0.08\textwidth}}l@{}}
+会议审稿人 & AAAI 2026、ECCV 2024、ICCV 2023 \\
+期刊审稿人 & Proceedings of the IEEE \\
+获奖 & ICCV 2021 第 1 届 VSPW Challenge Workshop 第一名（2021.09）
 \end{tabular}
 
 \end{document}

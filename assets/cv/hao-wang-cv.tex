@@ -1,10 +1,24 @@
+% Hao Wang — CV (English)
+% Black-and-white print layout; typography matches https://wanghao9610.github.io/ :
+% serif headings (Source Serif Pro) with sans body (Source Sans Pro).
+% Build: make   (latexmk -xelatex)
+
 \documentclass[10pt,letterpaper]{article}
 
-\usepackage[margin=0.65in]{geometry}
+\usepackage[margin=0.62in,top=0.55in,bottom=0.55in]{geometry}
+\usepackage{fontspec}
+\setmainfont{SourceSerifPro-Regular.otf}[
+  BoldFont=SourceSerifPro-Semibold.otf,
+  ItalicFont=SourceSerifPro-RegularIt.otf,
+  BoldItalicFont=SourceSerifPro-SemiboldIt.otf]
+\setsansfont{SourceSansPro-Regular.otf}[
+  BoldFont=SourceSansPro-Semibold.otf,
+  ItalicFont=SourceSansPro-RegularIt.otf,
+  BoldItalicFont=SourceSansPro-SemiboldIt.otf]
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{xeCJK}
+\setCJKmainfont{FandolSong-Regular.otf}[BoldFont=FandolSong-Bold.otf]
 \usepackage{xcolor}
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage{lmodern}
 \usepackage{hyperref}
 \usepackage{enumitem}
 \usepackage{tabularx}
@@ -13,180 +27,230 @@
 \usepackage{ragged2e}
 \usepackage{microtype}
 \usepackage{needspace}
+\usepackage{fontawesome5}
+\usepackage{etoolbox}
 
+% ---- palette (same tokens as the website) ---------------------------------
 \definecolor{ink}{HTML}{000000}
-\definecolor{muted}{HTML}{000000}
-\definecolor{accentdark}{HTML}{000000}
-\definecolor{rule}{HTML}{E5E7EB}
-
-\renewcommand{\familydefault}{\sfdefault}
+\definecolor{text}{HTML}{000000}
+\definecolor{muted}{HTML}{3A3A3A}
+\definecolor{soft}{HTML}{555555}
+\definecolor{accent}{HTML}{000000}
+\definecolor{rule}{HTML}{BFBFBF}
 
 \hypersetup{
   colorlinks=true,
-  urlcolor=ink,
-  linkcolor=ink
+  urlcolor=accent,
+  linkcolor=accent,
+  pdftitle={Hao Wang - CV},
+  pdfauthor={Hao Wang}
 }
 
 \pagestyle{empty}
+\color{text}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0pt}
-\setlist[itemize]{leftmargin=1.2em,itemsep=2pt,topsep=2pt,parsep=0pt}
-\renewcommand{\arraystretch}{1.08}
+\setlist[itemize]{leftmargin=1.15em,itemsep=1.6pt,topsep=2pt,parsep=0pt,label=\textcolor{accent}{\scriptsize\raisebox{.25ex}{$\bullet$}}}
+\renewcommand{\arraystretch}{1.06}
+\setlength{\emergencystretch}{1.5em}
 
+% ---- section: serif title + hairline ---------------------------------------
 \titleformat{\section}
-  {\large\bfseries\color{ink}}
+  {\rmfamily\Large\bfseries\color{ink}}
   {}
   {0pt}
-  {\color{ink}\MakeUppercase}
-\titlespacing*{\section}{0pt}{14pt}{7pt}
+  {}
+  [{\vspace{-3pt}\color{rule}\titlerule[0.6pt]}]
+\titlespacing*{\section}{0pt}{9pt}{5pt}
 
-\newcommand{\datebadge}[1]{%
-  \begingroup
-  \textcolor{muted}{\footnotesize\bfseries #1}%
-  \endgroup
-}
+\newcommand{\datebadge}[1]{\textcolor{accent}{\footnotesize\bfseries #1}}
+\newcommand{\metaline}[1]{\textcolor{muted}{\small #1}}
+\newcommand{\venue}[1]{\textcolor{accent}{\footnotesize\bfseries #1}}
+\newcommand{\stars}[1]{\ifstrempty{#1}{}{\hfill\textcolor{soft}{\footnotesize\faStar\,#1}}}
+\newcommand{\sep}{{\color{rule}\;\textbar\;}}
 
+% \cvitem{title}{date}{subtitle}{body}
 \newcommand{\cvitem}[4]{%
-  \Needspace{7\baselineskip}
-  \vspace{2pt}
-  \begin{tabularx}{\textwidth}{@{}>{\RaggedRight\arraybackslash}X>{\RaggedLeft\arraybackslash}p{0.23\textwidth}@{}}
-    \textbf{\color{ink}#1} & \datebadge{#2} \\
-    {\small\color{muted}#3} & \\
+  \Needspace{6\baselineskip}
+  \vspace{3pt}
+  \begin{tabularx}{\textwidth}{@{}>{\RaggedRight\arraybackslash}X>{\RaggedLeft\arraybackslash}p{0.25\textwidth}@{}}
+    \textbf{\textcolor{ink}{#1}} & \datebadge{#2}
   \end{tabularx}
-  \vspace{-2pt}
+  \vspace{-1pt}
+  \metaline{#3}\par
+  \vspace{1pt}
   #4
 }
 
+% \publication{url}{title}{venue}{authors}{summary}
 \newcommand{\publication}[5]{%
   \Needspace{5\baselineskip}
   \vspace{2pt}
-  \begin{tabularx}{\textwidth}{@{}>{\RaggedRight\arraybackslash}X>{\RaggedLeft\arraybackslash}p{0.18\textwidth}@{}}
-    \textbf{\href{#1}{\color{ink}#2}} & \datebadge{#3}
+  \begin{tabularx}{\textwidth}{@{}>{\RaggedRight\arraybackslash}X>{\RaggedLeft\arraybackslash}p{0.16\textwidth}@{}}
+    \textbf{\href{#1}{\textcolor{ink}{#2}}} & \venue{#3}
   \end{tabularx}
+  \vspace{-1pt}
   {\small #4}\par
   \vspace{1pt}
-  {\small\color{muted}#5}\par
-  \vspace{7pt}
+  \textcolor{muted}{\small #5}\par
+  \vspace{4pt}
+}
+
+% \repo{url}{name}{tag}{stars}{description}
+\newcommand{\repo}[5]{%
+  \textbf{\href{#1}{\textcolor{ink}{#2}}}\ \venue{#3}\stars{#4}\par
+  \vspace{-1pt}
+  \textcolor{muted}{\small #5}\par
+  \vspace{3.5pt}
 }
 
 \begin{document}
 
+% ============================ Header =========================================
 \begin{minipage}{\textwidth}
-    \vspace{8pt}
-    \centering
-    {\Huge\bfseries\color{ink} Hao Wang}\par
-    \vspace{4pt}
-    {\large\color{accentdark} Ph.D. Candidate in Computer Vision, Multimodal Foundation Models, and Agentic AI}\par
-    \vspace{6pt}
-    {\small
-      Email: \href{mailto:wanghao9610@gmail.com}{wanghao9610@gmail.com}
-      \quad\textbar\quad
-      Website: \href{https://wanghao9610.github.io/}{wanghao9610.github.io}
-      \quad\textbar\quad
-      WeChat: wangh9610
-    }\par
-    \vspace{7pt}
-    {\color{rule}\rule{\linewidth}{0.5pt}}\par
-    \vspace{5pt}
-    \noindent
-    \begin{minipage}[t]{0.62\textwidth}
-      \RaggedRight\small HCP Lab, Sun Yat-sen University \& Pengcheng Laboratory
-    \end{minipage}
-    \hfill
-    \begin{minipage}[t]{0.34\textwidth}
-      \RaggedLeft\small Expected graduation: December 2026
-    \end{minipage}\par
-    \vspace{2pt}
-    {\small\RaggedRight Open to industry research roles and collaborations\par}
-    \vspace{3pt}
+  \vspace{2pt}
+  \centering
+  {\rmfamily\fontsize{28}{32}\selectfont\bfseries\color{ink} Hao Wang
+   {\fontsize{20}{24}\selectfont\mdseries\color{muted} 王豪}}\par
+  \vspace{5pt}
+  {\rmfamily\itshape\large\color{muted} Leave the world a little different.}\par
+  \vspace{4pt}
+  {\normalsize\color{accent} Ph.D. Candidate · Open-Ended Visual Perception · Multimodal Foundation Models · Agentic AI}\par
+  \vspace{7pt}
+  {\small\color{muted}
+    \faEnvelope\ \href{mailto:wanghao9610@gmail.com}{wanghao9610@gmail.com}
+    \sep
+    \faGlobe\ \href{https://wanghao9610.github.io/}{wanghao9610.github.io}
+    \sep
+    \faGithub\ \href{https://github.com/wanghao9610}{wanghao9610}
+    \sep
+    \faWeixin\ wangh9610
+    \sep
+    \faMapMarker*\ Shenzhen, China
+  }\par
+  \vspace{7pt}
+  {\color{ink}\rule{\linewidth}{0.8pt}}\par
+  \vspace{5pt}
+  \begin{minipage}[t]{0.62\textwidth}
+    \RaggedRight\small\color{muted} HCP Lab, Sun Yat-sen University \& Pengcheng Laboratory
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[t]{0.36\textwidth}
+    \RaggedLeft\small\color{muted} Expected graduation: \textbf{\color{accent}December 2026}
+  \end{minipage}\par
+  \vspace{1pt}
+  {\small\color{muted}\RaggedRight Open to industry research roles and research collaborations.\par}
 \end{minipage}
 
+% ============================ Profile ========================================
 \section{Profile}
-Ph.D. candidate focused on open-ended visual perception, multimodal foundation models, and agentic AI. First-author work includes X2SAM (ECCV 2026), X-SAM (AAAI 2026), OV-DINO, and TMANet (ICIP 2021), spanning unified image/video segmentation, open-vocabulary detection, and temporal pixel-level understanding. I am interested in connecting foundation models with reliable dense perception for practical vision systems.
+Ph.D. candidate whose research centers on \textbf{open-ended computer vision} and \textbf{multimodal large language models}, and who is increasingly exploring \textbf{multimodal agentic models}. First-author work includes X2SAM (ECCV 2026), X-SAM (AAAI 2026), OV-DINO, and TMANet (ICIP 2021), spanning unified image/video segmentation, open-vocabulary detection, and temporal pixel-level understanding. All representative works are open-sourced with project pages and code (1.1k+ GitHub stars in total). Interested in connecting foundation models with reliable dense perception and agentic workflows for practical vision systems.
 
-\section{Research Contributions}
-  \begin{itemize}
-    \item Built a first-author research line on open-ended perception, from video semantic segmentation to open-vocabulary detection and multimodal any-segmentation.
-    \item Developed multimodal segmentation systems that accept both natural-language instructions and visual prompts, bridging high-level reasoning and dense mask prediction.
-    \item Explored unified image/video segmentation with memory mechanisms for temporally consistent object-level and pixel-level understanding.
-    \item Released project pages and code for representative works, emphasizing reproducible and open research practice.
-  \end{itemize}
+\section{Research Highlights}
+\begin{itemize}
+  \item Built a first-author research line on open-ended perception, from video semantic segmentation to open-vocabulary detection and multimodal any-segmentation.
+  \item Developed multimodal segmentation MLLMs that accept both natural-language instructions and visual prompts, bridging high-level reasoning and dense mask prediction.
+  \item Extended any-segmentation from images to videos with a mask-memory mechanism for temporally consistent object- and pixel-level understanding.
+  \item Maintain open-source research code and an agent-oriented research toolchain (STAR / STORY / STAGE), emphasizing reproducible and open research practice.
+\end{itemize}
 
+% ============================ Publications ===================================
 \section{First-Author Publications}
 \publication
   {https://wanghao9610.github.io/X2SAM/}
   {X2SAM: Any Segmentation in Images and Videos}
-  {ECCV, 2026}
+  {ECCV 2026}
   {\textbf{Hao Wang}, Limeng Qiao, Chi Zhang, Guanglu Wan, Lin Ma, Xiangyuan Lan, Xiaodan Liang}
-  {Unified segmentation MLLM for images and videos, supporting conversational instructions, visual prompts, and temporally consistent mask memory. Extends any-segmentation from static images to videos while preserving dense pixel-level responses. \href{https://arxiv.org/abs/2605.00891}{Paper} \textbar{} \href{https://github.com/wanghao9610/X2SAM}{Code}}
+  {A unified segmentation MLLM that extends any-segmentation from images to videos, supporting conversational instructions and visual prompts through Mask Memory for temporally consistent pixel-level perception. \href{https://wanghao9610.github.io/X2SAM/}{Project} \sep \href{https://arxiv.org/abs/2605.00891}{Paper} \sep \href{https://github.com/wanghao9610/X2SAM}{Code}}
 
 \publication
   {https://wanghao9610.github.io/X-SAM/}
   {X-SAM: From Segment Anything to Any Segmentation}
-  {AAAI, 2026}
+  {AAAI 2026}
   {\textbf{Hao Wang}, Limeng Qiao, Zequn Jie, Zhijian Huang, Chengjian Feng, Qingfang Zheng, Lin Ma, Xiangyuan Lan, Xiaodan Liang}
-  {Unified MLLM framework extending segment-anything capabilities to any segmentation and pixel-level perceptual understanding. Supports flexible segmentation through multimodal inputs and instruction-driven interaction. \href{https://arxiv.org/abs/2508.04655}{Paper} \textbar{} \href{https://github.com/wanghao9610/X-SAM}{Code}}
+  {A unified MLLM framework that extends segment-anything capabilities to any segmentation, enabling instruction-driven interaction and pixel-level perceptual understanding. \href{https://wanghao9610.github.io/X-SAM/}{Project} \sep \href{https://arxiv.org/abs/2508.04655}{Paper} \sep \href{https://github.com/wanghao9610/X-SAM}{Code}}
 
 \publication
   {https://wanghao9610.github.io/OV-DINO/}
   {OV-DINO: Unified Open-Vocabulary Detection with Language-Aware Selective Fusion}
-  {arXiv, 2024}
+  {arXiv 2024}
   {\textbf{Hao Wang}, Pengzhen Ren, Zequn Jie, Xiao Dong, Chengjian Feng, Yinlong Qian, Lin Ma, Dongmei Jiang, Yaowei Wang, Xiangyuan Lan, Xiaodan Liang}
-  {Unified open-vocabulary detector pre-trained on diverse large-scale datasets with language-aware selective fusion. Designed to improve category generalization by aligning visual detection with language semantics. \href{https://arxiv.org/abs/2407.07844}{Paper} \textbar{} \href{https://github.com/wanghao9610/OV-DINO}{Code}}
+  {A unified open-vocabulary detector pre-trained on diverse large-scale datasets with language-aware selective fusion, improving category generalization through visual-language alignment. \href{https://wanghao9610.github.io/OV-DINO/}{Project} \sep \href{https://arxiv.org/abs/2407.07844}{Paper} \sep \href{https://github.com/wanghao9610/OV-DINO}{Code}}
 
 \publication
-  {https://wanghao9610.github.io/TMANet/}
+  {https://arxiv.org/abs/2102.08643}
   {TMANet: Temporal Memory Attention for Video Semantic Segmentation}
-  {ICIP, 2021}
+  {ICIP 2021}
   {\textbf{Hao Wang}, Weining Wang, Jing Liu}
-  {Temporal memory attention for long-range video semantic segmentation without optical-flow prediction. \href{https://arxiv.org/abs/2102.08643}{Paper} \textbar{} \href{https://github.com/wanghao9610/TMANet}{Code}}
+  {A temporal memory attention method for long-range video semantic segmentation that captures cross-frame relations without optical-flow prediction. \href{https://arxiv.org/abs/2102.08643}{Paper} \sep \href{https://github.com/wanghao9610/TMANet}{Code}}
 
-\newpage
+% ============================ Open source =====================================
+\Needspace*{16\baselineskip}
+\section{Open-Source Projects}
+\metaline{Research code and tooling on \href{https://github.com/wanghao9610}{GitHub}; star counts as of September 2026.}\par
+\vspace{4pt}
+\begin{minipage}[t]{0.485\textwidth}
+  \repo{https://github.com/wanghao9610/OV-DINO}{OV-DINO}{arXiv 2024}{414}{Unified open-vocabulary detection with language-aware selective fusion.}
+  \repo{https://github.com/wanghao9610/X-SAM}{X-SAM}{AAAI 2026}{391}{From segment anything to any segmentation.}
+  \repo{https://github.com/wanghao9610/TMANet}{TMANet}{ICIP 2021}{128}{Temporal memory attention for video semantic segmentation.}
+  \repo{https://github.com/wanghao9610/X2SAM}{X2SAM}{ECCV 2026}{104}{Any segmentation in images and videos with one unified MLLM.}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.485\textwidth}
+  \repo{https://github.com/wanghao9610/STAR}{STAR}{Harness · WIP}{51}{Systematic Toolchain for AI Research: an agent harness for planning, running, and tracking research.}
+  \repo{https://github.com/wanghao9610/STORY}{STORY \,/\, \href{https://github.com/wanghao9610/STAGE}{STAGE}}{Harness · WIP}{}{Companion toolchains for organizing research over years and for authoring, guiding, and editing.}
+  \repo{https://omdsh-plugins.github.io/}{omdsh-plugins}{Collection}{}{Oh My DeepSeek Harness: a curated plugin collection for the DeepSeek Harness.}
+  \repo{https://github.com/wanghao9610/arXivTeX}{arXivTeX}{Template}{33}{Paper template for arXiv or any conference. Also: \href{https://github.com/wanghao9610/Claude-Model-Proxy}{Claude Model Proxy}, \href{https://github.com/wanghao9610/Codex-Remote-Connector}{Codex Remote Connector}.}
+\end{minipage}
+
+% ============================ Experience =====================================
 \section{Research Experience}
 \cvitem
-  {Meituan M17-MM}
+  {Meituan · M17-MM}
   {2025.01 -- Present}
   {Research Intern}
   {\begin{itemize}
-    \item Developed X2SAM, a unified any-segmentation MLLM for images and videos with conversational instructions and visual prompts.
-    \item Investigated mask memory for preserving object-level consistency in video segmentation and interactive perception.
+    \item Led X2SAM, a unified any-segmentation MLLM for images and videos with conversational instructions and visual prompts.
+    \item Designed a mask-memory mechanism that preserves object-level consistency in video segmentation and interactive perception; owned training, evaluation, and open-source release.
   \end{itemize}}
 
 \cvitem
-  {Meituan Vision Intelligence Department}
+  {Meituan · Vision Intelligence Department}
   {2022.07 -- 2025.01}
   {Research Intern}
   {\begin{itemize}
-    \item Contributed to OV-DINO and X-SAM, advancing open-vocabulary recognition and any segmentation.
+    \item Led OV-DINO and X-SAM, advancing open-vocabulary recognition and any segmentation.
     \item Studied language-aware fusion and multimodal supervision for scalable visual recognition and segmentation.
   \end{itemize}}
 
 \cvitem
-  {Selected Applied Research Internships}
-  {2019.09 -- 2021.08}
-  {Tencent AI Platform Department; Huawei Photo Processing Department}
-  {\begin{itemize}
-    \item Conducted applied AI platform and computer vision projects across earlier industry internships.
-  \end{itemize}}
+  {Tencent · AI Platform Department}
+  {2021.05 -- 2021.08}
+  {Applied Research Intern}
+  {}
 
+\cvitem
+  {Huawei · Photo Processing Department}
+  {2019.09 -- 2020.07}
+  {Applied Project Intern}
+  {}
+
+% ============================ Education ======================================
 \section{Education}
 \cvitem
   {Sun Yat-sen University \& Pengcheng Laboratory}
   {2022.09 -- Present}
   {Ph.D. student, School of Intelligent Systems Engineering}
   {\begin{itemize}
-    \item Co-supervised by Prof. Xiaodan Liang and Associate Prof. Xiangyuan Lan.
-    \item Research areas: multimodal foundation models, open-ended visual understanding, image/video segmentation, and agentic AI.
-    \item Expected to graduate in December 2026; actively seeking research positions in industry.
+    \item Co-advised by Prof. Xiaodan Liang and Assoc. Prof. Xiangyuan Lan.
+    \item Research: multimodal foundation models, open-ended visual understanding, image/video segmentation, and agentic AI. Expected graduation: December 2026.
   \end{itemize}}
 
 \cvitem
   {University of Chinese Academy of Sciences \& Institute of Automation, CAS}
   {2019.09 -- 2022.06}
-  {Master student, School of Artificial Intelligence}
-  {\begin{itemize}
-    \item Supervised by Prof. Jing Liu.
-  \end{itemize}}
+  {Master student, School of Artificial Intelligence; advised by Prof. Jing Liu}
+  {}
 
 \cvitem
   {Beijing Jiaotong University}
@@ -194,23 +258,21 @@ Ph.D. candidate focused on open-ended visual perception, multimodal foundation m
   {Bachelor student, School of Electronic and Information Engineering}
   {}
 
-\section{Additional Publication}
+% ============================ Misc ===========================================
+\section{Co-Authored Publication}
 \publication
   {https://ieeexplore.ieee.org/abstract/document/10096063}
   {WL-MSR: Watch and Listen for Multimodal Subtitle Recognition}
-  {ICASSP, 2023}
+  {ICASSP 2023}
   {Jiawei Liu, \textbf{Hao Wang}, Weining Wang, Xingjian He, Jing Liu}
-  {Transformer-based multimodal subtitle recognition using OCR and ASR information with mask/crop strategies and multi-level identity embeddings.}
+  {Transformer-based multimodal subtitle recognition that fuses OCR and ASR information with mask/crop strategies and multi-level identity embeddings.}
 
-\section{Professional Service}
-\begin{tabular}{@{}>{\bfseries}l@{\hspace{0.12\textwidth}}l@{}}
-Conference Reviewer & AAAI 2026, ICCV 2023, ECCV 2024 \\
-Journal Reviewer & Proceedings of the IEEE
-\end{tabular}
-
-\section{Awards}
-\begin{tabular}{@{}>{\bfseries}l@{\hspace{0.13\textwidth}}l@{}}
-2021.09 & 1st place in the 1st VSPW Challenge Workshop, ICCV 2021.
+\Needspace*{5\baselineskip}
+\section{Service \& Awards}
+\begin{tabular}{@{}>{\bfseries\color{ink}}l@{\hspace{0.08\textwidth}}l@{}}
+Conference Reviewer & AAAI 2026, ECCV 2024, ICCV 2023 \\
+Journal Reviewer & Proceedings of the IEEE \\
+Award & 1st place, the 1st VSPW Challenge Workshop, ICCV 2021 (2021.09)
 \end{tabular}
 
 \end{document}

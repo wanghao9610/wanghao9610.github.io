@@ -8,7 +8,7 @@ This is the source code of Hao Wang's public academic website. The layout was or
 - `assets/images/profile/`: personal profile image.
 - `assets/images/publications/`: publication preview images.
 - `assets/icons/`: favicon and touch icons.
-- `assets/cv/`: CV PDFs and LaTeX sources.
+- `assets/cv/`: CV PDFs and LaTeX sources (`make` for the English CV, `make -f Makefile.zh` for the Chinese one; both build with `latexmk -xelatex` and share the website's palette and fonts).
 
 ## Editing tips
 
