@@ -1092,8 +1092,8 @@ h3 {
 .timeline-item {
   position: relative;
   display: grid;
-  grid-template-columns: 190px 1fr;
-  gap: 22px;
+  grid-template-columns: 170px 1fr;
+  gap: 18px;
   padding: 12px 0 20px;
 }
 
@@ -1158,6 +1158,12 @@ h3 {
   text-decoration: none;
 }
 
+.two-col {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 40px;
+}
+
 /* --------------------------------------------------------------------------
    Info lists (services / awards)
    -------------------------------------------------------------------------- */
@@ -1168,7 +1174,7 @@ h3 {
 
 .info-item {
   display: grid;
-  grid-template-columns: 190px 1fr;
+  grid-template-columns: 150px 1fr;
   gap: 16px;
   align-items: center;
   padding: 14px 18px;
@@ -1377,8 +1383,13 @@ h3 {
    Responsive
    -------------------------------------------------------------------------- */
 @media (max-width: 900px) {
-  .repo-grid {
+  .repo-grid,
+  .two-col {
     grid-template-columns: 1fr;
+  }
+
+  .two-col {
+    gap: 8px;
   }
 
   .hero-grid {
