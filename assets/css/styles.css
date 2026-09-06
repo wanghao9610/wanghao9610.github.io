@@ -87,6 +87,7 @@ html {
 
 body {
   margin: 0;
+  overflow-x: clip;
   font-family: var(--font-sans);
   font-size: 15.5px;
   line-height: 1.65;
@@ -1223,9 +1224,19 @@ h3 {
   border-radius: var(--radius-lg);
   background: var(--surface);
   text-align: center;
+  overflow: hidden;
   opacity: .55;
   filter: grayscale(.6) sepia(.15);
   transition: opacity .25s ease, filter .25s ease;
+}
+
+/* The third-party widget hard-codes a 500px width; keep it inside the card on phones */
+.visitors-section #mapmyvisitors-container > *,
+.visitors-section #mapmyvisitors-container img,
+.visitors-section #mapmyvisitors-container iframe,
+.visitors-section #mapmyvisitors-container canvas {
+  max-width: 100% !important;
+  box-sizing: border-box;
 }
 
 .visitors-section #mapmyvisitors-container:hover {
@@ -1392,8 +1403,44 @@ h3 {
     padding: 0 18px;
   }
 
+  :root {
+    --nav-height: 104px;
+  }
+
+  .site-nav {
+    height: auto;
+  }
+
+  .site-nav .container {
+    flex-wrap: wrap;
+    row-gap: 4px;
+    padding-top: 10px;
+    padding-bottom: 8px;
+  }
+
+  .brand {
+    order: 0;
+  }
+
+  .nav-actions {
+    order: 1;
+  }
+
   .nav-links {
-    display: none;
+    order: 2;
+    flex: 1 0 100%;
+    width: calc(100% + 36px);
+    margin: 0 -18px;
+    padding: 2px 18px 4px;
+    gap: 4px;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scroll-padding-inline: 18px;
+  }
+
+  .nav-links a {
+    padding: 6px 10px;
+    font-size: 13px;
   }
 
   .hero {

@@ -266,9 +266,18 @@ function initializeSectionNavigation() {
     .map((link) => document.querySelector(link.getAttribute('href')))
     .filter(Boolean);
 
+  const navList = document.querySelector('.nav-links');
+
   function setActiveNav(sectionId) {
     navLinks.forEach((link) => {
-      link.classList.toggle('active', link.getAttribute('href') === '#' + sectionId);
+      const isActive = link.getAttribute('href') === '#' + sectionId;
+      link.classList.toggle('active', isActive);
+
+      // On phones the links scroll horizontally: keep the active one in view.
+      if (isActive && navList && navList.scrollWidth > navList.clientWidth) {
+        const target = link.offsetLeft - (navList.clientWidth - link.offsetWidth) / 2;
+        navList.scrollTo({ left: Math.max(0, target), behavior: 'smooth' });
+      }
     });
   }
 
@@ -370,6 +379,24 @@ function initializeMapMyVisitors() {
     }
   }
 
+  // The widget renders at a fixed 500px; scale it down so the whole map fits narrow screens.
+  function fitMapToContainer() {
+    const widget = Array.from(container.children).find((node) => node.tagName.toLowerCase() !== 'script');
+    if (!widget) {
+      return;
+    }
+
+    const available = container.clientWidth
+      - parseFloat(getComputedStyle(container).paddingLeft)
+      - parseFloat(getComputedStyle(container).paddingRight);
+    const natural = widget.scrollWidth || widget.offsetWidth || 500;
+    const scale = Math.min(1, available / natural);
+
+    widget.style.zoom = scale < 1 ? String(scale) : '';
+  }
+
+  window.addEventListener('resize', fitMapToContainer, { passive: true });
+
   function watchForRenderedMap() {
     if (hasRenderedMap()) {
       if (fallbackTimer) {
@@ -380,6 +407,8 @@ function initializeMapMyVisitors() {
         renderObserver.disconnect();
         renderObserver = null;
       }
+      fitMapToContainer();
+      window.setTimeout(fitMapToContainer, 1500);
       return;
     }
 
@@ -394,6 +423,8 @@ function initializeMapMyVisitors() {
           fallbackTimer = null;
           renderObserver.disconnect();
           renderObserver = null;
+          fitMapToContainer();
+          window.setTimeout(fitMapToContainer, 1500);
         }
       });
       renderObserver.observe(container, { childList: true, subtree: true });
