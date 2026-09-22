@@ -1,4 +1,4 @@
-This is the source code of Hao Wang's public academic website. The layout was originally adapted from [Jon Barron's website](https://jonbarron.info/) and later redesigned with a warm, editorial look inspired by Claude / Anthropic's design language (ivory background, terracotta accent, serif headings, light/dark theme). Feel free to clone this code for your own personal use.
+This is the source code of Hao Wang's public academic website. The layout was originally adapted from [Jon Barron's website](https://jonbarron.info/) and later redesigned with a blue editorial look (warm neutral backgrounds, blue accents, serif headings, light/dark theme). Feel free to clone this code for your own personal use.
 
 ## Structure
 
