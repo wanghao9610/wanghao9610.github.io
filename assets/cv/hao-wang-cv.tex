@@ -18,6 +18,7 @@
 \renewcommand{\familydefault}{\sfdefault}
 \usepackage{xeCJK}
 \setCJKmainfont{FandolSong-Regular.otf}[BoldFont=FandolSong-Bold.otf]
+\setCJKsansfont{FandolSong-Regular.otf}[BoldFont=FandolSong-Bold.otf]
 \usepackage{xcolor}
 \usepackage{hyperref}
 \usepackage{enumitem}
@@ -61,7 +62,7 @@
   {0pt}
   {}
   [{\vspace{-3pt}\color{rule}\titlerule[0.6pt]}]
-\titlespacing*{\section}{0pt}{9pt}{5pt}
+\titlespacing*{\section}{0pt}{12pt}{6pt}
 
 \newcommand{\datebadge}[1]{\textcolor{accent}{\footnotesize\bfseries #1}}
 \newcommand{\metaline}[1]{\textcolor{muted}{\small #1}}
@@ -71,11 +72,11 @@
 
 % \cvitem{title}{date}{subtitle}{body}
 \newcommand{\cvitem}[4]{%
-  \Needspace{6\baselineskip}
-  \vspace{3pt}
+  \ifstrempty{#4}{\Needspace{3\baselineskip}}{\Needspace{6\baselineskip}}
+  \vspace{8pt}
   \begin{tabularx}{\textwidth}{@{}>{\RaggedRight\arraybackslash}X>{\RaggedLeft\arraybackslash}p{0.25\textwidth}@{}}
     \textbf{\textcolor{ink}{#1}} & \datebadge{#2}
-  \end{tabularx}
+  \end{tabularx}\par
   \vspace{-1pt}
   \metaline{#3}\par
   \vspace{1pt}
@@ -83,17 +84,19 @@
 }
 
 % \publication{url}{title}{venue}{authors}{summary}
+% Use the actual entry height so short papers do not trigger early page breaks.
 \newcommand{\publication}[5]{%
-  \Needspace{5\baselineskip}
-  \vspace{2pt}
+  \par\addvspace{2pt}
+  \noindent\begin{minipage}{\linewidth}
   \begin{tabularx}{\textwidth}{@{}>{\RaggedRight\arraybackslash}X>{\RaggedLeft\arraybackslash}p{0.16\textwidth}@{}}
     \textbf{\href{#1}{\textcolor{ink}{#2}}} & \venue{#3}
-  \end{tabularx}
+  \end{tabularx}\par
   \vspace{-1pt}
   {\small #4}\par
   \vspace{1pt}
   \textcolor{muted}{\small #5}\par
-  \vspace{4pt}
+  \end{minipage}\par
+  \vspace{6pt}
 }
 
 % \repo{url}{name}{tag}{stars}{description}
@@ -101,7 +104,7 @@
   \textbf{\href{#1}{\textcolor{ink}{#2}}}\ \venue{#3}\stars{#4}\par
   \vspace{-1pt}
   \textcolor{muted}{\small #5}\par
-  \vspace{3.5pt}
+  \vspace{5pt}
 }
 
 \begin{document}
@@ -161,35 +164,45 @@ Ph.D. candidate whose research centers on \textbf{open-ended computer vision} an
   {X2SAM: Any Segmentation in Images and Videos}
   {ECCV 2026}
   {\textbf{Hao Wang}, Limeng Qiao, Chi Zhang, Guanglu Wan, Lin Ma, Xiangyuan Lan, Xiaodan Liang}
-  {A unified segmentation MLLM that extends any-segmentation from images to videos, supporting conversational instructions and visual prompts through Mask Memory for temporally consistent pixel-level perception. \href{https://wanghao9610.github.io/X2SAM/}{Project} \sep \href{https://arxiv.org/abs/2605.00891}{Paper} \sep \href{https://github.com/wanghao9610/X2SAM}{Code}}
+  {A unified segmentation MLLM that extends any-segmentation from images to videos, supporting conversational instructions and visual prompts through Mask Memory for temporally consistent pixel-level perception. \mbox{\href{https://wanghao9610.github.io/X2SAM/}{Project} \sep \href{https://arxiv.org/abs/2605.00891}{Paper} \sep \href{https://github.com/wanghao9610/X2SAM}{Code}}}
 
 \publication
   {https://wanghao9610.github.io/X-SAM/}
   {X-SAM: From Segment Anything to Any Segmentation}
   {AAAI 2026}
   {\textbf{Hao Wang}, Limeng Qiao, Zequn Jie, Zhijian Huang, Chengjian Feng, Qingfang Zheng, Lin Ma, Xiangyuan Lan, Xiaodan Liang}
-  {A unified MLLM framework that extends segment-anything capabilities to any segmentation, enabling instruction-driven interaction and pixel-level perceptual understanding. \href{https://wanghao9610.github.io/X-SAM/}{Project} \sep \href{https://arxiv.org/abs/2508.04655}{Paper} \sep \href{https://github.com/wanghao9610/X-SAM}{Code}}
+  {A unified MLLM framework that extends segment-anything capabilities to any segmentation, enabling instruction-driven interaction and pixel-level perceptual understanding. \mbox{\href{https://wanghao9610.github.io/X-SAM/}{Project} \sep \href{https://arxiv.org/abs/2508.04655}{Paper} \sep \href{https://github.com/wanghao9610/X-SAM}{Code}}}
 
 \publication
   {https://wanghao9610.github.io/OV-DINO/}
   {OV-DINO: Unified Open-Vocabulary Detection with Language-Aware Selective Fusion}
   {arXiv 2024}
   {\textbf{Hao Wang}, Pengzhen Ren, Zequn Jie, Xiao Dong, Chengjian Feng, Yinlong Qian, Lin Ma, Dongmei Jiang, Yaowei Wang, Xiangyuan Lan, Xiaodan Liang}
-  {A unified open-vocabulary detector pre-trained on diverse large-scale datasets with language-aware selective fusion, improving category generalization through visual-language alignment. \href{https://wanghao9610.github.io/OV-DINO/}{Project} \sep \href{https://arxiv.org/abs/2407.07844}{Paper} \sep \href{https://github.com/wanghao9610/OV-DINO}{Code}}
+  {A unified open-vocabulary detector pre-trained on diverse large-scale datasets with language-aware selective fusion, improving category generalization through visual-language alignment. \mbox{\href{https://wanghao9610.github.io/OV-DINO/}{Project} \sep \href{https://arxiv.org/abs/2407.07844}{Paper} \sep \href{https://github.com/wanghao9610/OV-DINO}{Code}}}
 
 \publication
   {https://arxiv.org/abs/2102.08643}
   {TMANet: Temporal Memory Attention for Video Semantic Segmentation}
   {ICIP 2021}
   {\textbf{Hao Wang}, Weining Wang, Jing Liu}
-  {A temporal memory attention method for long-range video semantic segmentation that captures cross-frame relations without optical-flow prediction. \href{https://arxiv.org/abs/2102.08643}{Paper} \sep \href{https://github.com/wanghao9610/TMANet}{Code}}
+  {A temporal memory attention method for long-range video semantic segmentation that captures cross-frame relations without optical-flow prediction. \mbox{\href{https://arxiv.org/abs/2102.08643}{Paper} \sep \href{https://github.com/wanghao9610/TMANet}{Code}}}
+
+\section{Co-Authored Publication}
+\publication
+  {https://ieeexplore.ieee.org/abstract/document/10096063}
+  {WL-MSR: Watch and Listen for Multimodal Subtitle Recognition}
+  {ICASSP 2023}
+  {Jiawei Liu, \textbf{Hao Wang}, Weining Wang, Xingjian He, Jing Liu}
+  {Transformer-based multimodal subtitle recognition that fuses OCR and ASR information with mask/crop strategies and multi-level identity embeddings.}
 
 % ============================ Open source =====================================
-\Needspace*{16\baselineskip}
+% Keep the publication portfolio together on page one.
+\newpage
 \section{Open-Source Projects}
 \metaline{Research code and tooling on \href{https://github.com/wanghao9610}{GitHub}; star counts as of September 2026.}\par
 \vspace{4pt}
 \begin{minipage}[t]{0.485\textwidth}
+  \RaggedRight
   \repo{https://github.com/wanghao9610/OV-DINO}{OV-DINO}{arXiv 2024}{414}{Unified open-vocabulary detection with language-aware selective fusion.}
   \repo{https://github.com/wanghao9610/X-SAM}{X-SAM}{AAAI 2026}{391}{From segment anything to any segmentation.}
   \repo{https://github.com/wanghao9610/TMANet}{TMANet}{ICIP 2021}{128}{Temporal memory attention for video semantic segmentation.}
@@ -197,6 +210,7 @@ Ph.D. candidate whose research centers on \textbf{open-ended computer vision} an
 \end{minipage}%
 \hfill
 \begin{minipage}[t]{0.485\textwidth}
+  \RaggedRight
   \repo{https://github.com/wanghao9610/STAR}{STAR}{Harness · WIP}{51}{Systematic Toolchain for AI Research: an agent harness for planning, running, and tracking research.}
   \repo{https://github.com/wanghao9610/STORY}{STORY \,/\, \href{https://github.com/wanghao9610/STAGE}{STAGE}}{Harness · WIP}{}{Companion toolchains for organizing research over years and for authoring, guiding, and editing.}
   \repo{https://omdsh-plugins.github.io/}{omdsh-plugins}{Collection}{}{Oh My DeepSeek Harness: a curated plugin collection for the DeepSeek Harness.}
@@ -259,14 +273,6 @@ Ph.D. candidate whose research centers on \textbf{open-ended computer vision} an
   {}
 
 % ============================ Misc ===========================================
-\section{Co-Authored Publication}
-\publication
-  {https://ieeexplore.ieee.org/abstract/document/10096063}
-  {WL-MSR: Watch and Listen for Multimodal Subtitle Recognition}
-  {ICASSP 2023}
-  {Jiawei Liu, \textbf{Hao Wang}, Weining Wang, Xingjian He, Jing Liu}
-  {Transformer-based multimodal subtitle recognition that fuses OCR and ASR information with mask/crop strategies and multi-level identity embeddings.}
-
 \Needspace*{5\baselineskip}
 \section{Service \& Awards}
 \begin{tabular}{@{}>{\bfseries\color{ink}}l@{\hspace{0.08\textwidth}}l@{}}

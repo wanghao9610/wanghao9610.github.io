@@ -2,7 +2,7 @@
 % 黑白打印版；字体排版与 https://wanghao9610.github.io/ 保持一致（衬线标题）。
 % 编译：make -f Makefile.zh   (latexmk -xelatex)
 
-\documentclass[UTF8,10pt,letterpaper,fontset=fandol,linespread=1.1]{ctexart}
+\documentclass[UTF8,10pt,letterpaper,fontset=fandol,linespread=1.15]{ctexart}
 
 \usepackage[margin=0.6in,top=0.5in,bottom=0.5in]{geometry}
 \setmainfont{SourceSerifPro-Regular.otf}[
@@ -55,7 +55,7 @@
   {0pt}
   {}
   [{\vspace{-3pt}\color{rule}\titlerule[0.6pt]}]
-\titlespacing*{\section}{0pt}{9pt}{5pt}
+\titlespacing*{\section}{0pt}{12pt}{6pt}
 
 \newcommand{\datebadge}[1]{\textcolor{accent}{\footnotesize\bfseries #1}}
 \newcommand{\metaline}[1]{\textcolor{muted}{\small #1}}
@@ -64,35 +64,37 @@
 \newcommand{\sep}{{\color{rule}\;\textbar\;}}
 
 \newcommand{\cvitem}[4]{%
-  \Needspace{6\baselineskip}
-  \vspace{3pt}
+  \ifstrempty{#4}{\Needspace{3\baselineskip}}{\Needspace{6\baselineskip}}
+  \vspace{8pt}
   \begin{tabularx}{\textwidth}{@{}>{\RaggedRight\arraybackslash}X>{\RaggedLeft\arraybackslash}p{0.25\textwidth}@{}}
     \textbf{\textcolor{ink}{#1}} & \datebadge{#2}
-  \end{tabularx}
+  \end{tabularx}\par
   \vspace{-1pt}
   \metaline{#3}\par
   \vspace{1pt}
   #4
 }
 
+% Use the actual entry height so short papers do not trigger early page breaks.
 \newcommand{\publication}[5]{%
-  \Needspace{5\baselineskip}
-  \vspace{2pt}
+  \par\addvspace{2pt}
+  \noindent\begin{minipage}{\linewidth}
   \begin{tabularx}{\textwidth}{@{}>{\RaggedRight\arraybackslash}X>{\RaggedLeft\arraybackslash}p{0.16\textwidth}@{}}
     \textbf{\href{#1}{\textcolor{ink}{#2}}} & \venue{#3}
-  \end{tabularx}
+  \end{tabularx}\par
   \vspace{-1pt}
   {\small #4}\par
   \vspace{1pt}
   \textcolor{muted}{\small #5}\par
-  \vspace{4.5pt}
+  \end{minipage}\par
+  \vspace{8pt}
 }
 
 \newcommand{\repo}[5]{%
   \textbf{\href{#1}{\textcolor{ink}{#2}}}\ \venue{#3}\stars{#4}\par
   \vspace{-1pt}
   \textcolor{muted}{\small #5}\par
-  \vspace{3pt}
+  \vspace{5pt}
 }
 
 \begin{document}
@@ -152,35 +154,45 @@
   {X2SAM: Any Segmentation in Images and Videos}
   {ECCV 2026}
   {\textbf{Hao Wang}, Limeng Qiao, Chi Zhang, Guanglu Wan, Lin Ma, Xiangyuan Lan, Xiaodan Liang}
-  {面向图像与视频的统一分割多模态大模型，支持对话式指令与视觉提示，通过掩码记忆实现时序一致的像素级感知，将任意分割从静态图像扩展到视频。\href{https://wanghao9610.github.io/X2SAM/}{主页} \sep \href{https://arxiv.org/abs/2605.00891}{论文} \sep \href{https://github.com/wanghao9610/X2SAM}{代码}}
+  {面向图像与视频的统一分割多模态大模型，支持对话式指令与视觉提示，通过掩码记忆实现时序一致的像素级感知，将任意分割从静态图像扩展到视频。\mbox{\href{https://wanghao9610.github.io/X2SAM/}{主页} \sep \href{https://arxiv.org/abs/2605.00891}{论文} \sep \href{https://github.com/wanghao9610/X2SAM}{代码}}}
 
 \publication
   {https://wanghao9610.github.io/X-SAM/}
   {X-SAM: From Segment Anything to Any Segmentation}
   {AAAI 2026}
   {\textbf{Hao Wang}, Limeng Qiao, Zequn Jie, Zhijian Huang, Chengjian Feng, Qingfang Zheng, Lin Ma, Xiangyuan Lan, Xiaodan Liang}
-  {统一的多模态大模型框架，将 Segment Anything 的能力扩展到任意分割与像素级感知理解，支持指令驱动的交互式分割。\href{https://wanghao9610.github.io/X-SAM/}{主页} \sep \href{https://arxiv.org/abs/2508.04655}{论文} \sep \href{https://github.com/wanghao9610/X-SAM}{代码}}
+  {统一的多模态大模型框架，将 Segment Anything 的能力扩展到任意分割与像素级感知理解，支持指令驱动的交互式分割。\mbox{\href{https://wanghao9610.github.io/X-SAM/}{主页} \sep \href{https://arxiv.org/abs/2508.04655}{论文} \sep \href{https://github.com/wanghao9610/X-SAM}{代码}}}
 
 \publication
   {https://wanghao9610.github.io/OV-DINO/}
   {OV-DINO: Unified Open-Vocabulary Detection with Language-Aware Selective Fusion}
   {arXiv 2024}
   {\textbf{Hao Wang}, Pengzhen Ren, Zequn Jie, Xiao Dong, Chengjian Feng, Yinlong Qian, Lin Ma, Dongmei Jiang, Yaowei Wang, Xiangyuan Lan, Xiaodan Liang}
-  {在多源大规模数据上预训练的统一开放词汇检测器，提出语言感知的选择性融合机制，通过视觉--语言对齐提升类别泛化能力。\href{https://wanghao9610.github.io/OV-DINO/}{主页} \sep \href{https://arxiv.org/abs/2407.07844}{论文} \sep \href{https://github.com/wanghao9610/OV-DINO}{代码}}
+  {在多源大规模数据上预训练的统一开放词汇检测器，提出语言感知的选择性融合机制，通过视觉--语言对齐提升类别泛化能力。\mbox{\href{https://wanghao9610.github.io/OV-DINO/}{主页} \sep \href{https://arxiv.org/abs/2407.07844}{论文} \sep \href{https://github.com/wanghao9610/OV-DINO}{代码}}}
 
 \publication
   {https://arxiv.org/abs/2102.08643}
   {TMANet: Temporal Memory Attention for Video Semantic Segmentation}
   {ICIP 2021}
   {\textbf{Hao Wang}, Weining Wang, Jing Liu}
-  {面向长程视频语义分割的时序记忆注意力方法，无需光流预测即可建模跨帧关系。\href{https://arxiv.org/abs/2102.08643}{论文} \sep \href{https://github.com/wanghao9610/TMANet}{代码}}
+  {面向长程视频语义分割的时序记忆注意力方法，无需光流预测即可建模跨帧关系。\mbox{\href{https://arxiv.org/abs/2102.08643}{论文} \sep \href{https://github.com/wanghao9610/TMANet}{代码}}}
+
+\section{合作论文}
+\publication
+  {https://ieeexplore.ieee.org/abstract/document/10096063}
+  {WL-MSR: Watch and Listen for Multimodal Subtitle Recognition}
+  {ICASSP 2023}
+  {Jiawei Liu, \textbf{Hao Wang}, Weining Wang, Xingjian He, Jing Liu}
+  {基于 Transformer 的多模态字幕识别方法，融合 OCR 与 ASR 信息，并使用掩码/裁剪策略和多层级身份嵌入。}
 
 % ============================ 开源 ==========================================
-\Needspace*{16\baselineskip}
+% Keep the publication portfolio together on page one.
+\newpage
 \section{开源项目}
 \metaline{研究代码与工具均托管于 \href{https://github.com/wanghao9610}{GitHub}；star 数截至 2026 年 9 月。}\par
 \vspace{4pt}
 \begin{minipage}[t]{0.485\textwidth}
+  \RaggedRight
   \repo{https://github.com/wanghao9610/OV-DINO}{OV-DINO}{arXiv 2024}{414}{语言感知选择性融合的统一开放词汇检测。}
   \repo{https://github.com/wanghao9610/X-SAM}{X-SAM}{AAAI 2026}{391}{从 Segment Anything 到任意分割。}
   \repo{https://github.com/wanghao9610/TMANet}{TMANet}{ICIP 2021}{128}{面向视频语义分割的时序记忆注意力。}
@@ -188,6 +200,7 @@
 \end{minipage}%
 \hfill
 \begin{minipage}[t]{0.485\textwidth}
+  \RaggedRight
   \repo{https://github.com/wanghao9610/STAR}{STAR}{Harness · WIP}{51}{Systematic Toolchain for AI Research：面向 AI 研究的智能体工具链，覆盖规划、执行与追踪。}
   \repo{https://github.com/wanghao9610/STORY}{STORY \,/\, \href{https://github.com/wanghao9610/STAGE}{STAGE}}{Harness · WIP}{}{配套工具链：跨年度组织研究，以及写作、引导与编辑。}
   \repo{https://omdsh-plugins.github.io/}{omdsh-plugins}{Collection}{}{Oh My DeepSeek Harness：DeepSeek Harness 插件精选集。}
@@ -250,14 +263,6 @@
   {}
 
 % ============================ 其他 ==========================================
-\section{合作论文}
-\publication
-  {https://ieeexplore.ieee.org/abstract/document/10096063}
-  {WL-MSR: Watch and Listen for Multimodal Subtitle Recognition}
-  {ICASSP 2023}
-  {Jiawei Liu, \textbf{Hao Wang}, Weining Wang, Xingjian He, Jing Liu}
-  {基于 Transformer 的多模态字幕识别方法，融合 OCR 与 ASR 信息，并使用掩码/裁剪策略和多层级身份嵌入。}
-
 \Needspace*{5\baselineskip}
 \section{学术服务与获奖}
 \begin{tabular}{@{}>{\bfseries\color{ink}}l@{\hspace{0.08\textwidth}}l@{}}
